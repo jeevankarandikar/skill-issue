@@ -1,0 +1,167 @@
+# UX Critique Protocol
+
+Full protocol for `/design critique`. Pair with automated scan (`npx impeccable --json`).
+
+---
+
+## Nielsen's 10 Heuristics (Score 0-4 each, total /40)
+
+| # | Heuristic | What to look for |
+|---|-----------|-----------------|
+| 1 | **Visibility of system status** | Does the user always know what's happening? Loading states, progress indicators, feedback on actions |
+| 2 | **Match between system and real world** | Does language match users' vocabulary? Are concepts familiar? No jargon |
+| 3 | **User control and freedom** | Can users undo? Cancel? Easily escape mistakes? Back button works? |
+| 4 | **Consistency and standards** | Same action = same result everywhere? Platform conventions followed? |
+| 5 | **Error prevention** | Does the design prevent errors before they happen? Confirmations, constraints, good defaults |
+| 6 | **Recognition over recall** | Are options visible? Doesn't require memorizing state from one part to use another |
+| 7 | **Flexibility and efficiency** | Shortcuts for experts? Accelerators? Keyboard navigation? Power user paths? |
+| 8 | **Aesthetic and minimalist design** | No irrelevant info? Every element serves a purpose? Signal-to-noise ratio |
+| 9 | **Help users recognize, diagnose, and recover from errors** | Error messages in plain language? Explain the problem? Suggest solution? |
+| 10 | **Help and documentation** | If help is needed, is it easy to find and task-focused? |
+
+**Score each 0-4:** 0 = absent/broken, 1 = major gaps, 2 = partial, 3 = mostly met, 4 = excellent.
+
+Typical real interfaces: 20-32/40. Below 15 = fundamental restructuring needed.
+
+---
+
+## Process
+
+### Step 1: Preparation
+
+Before reviewing:
+- Identify 2-3 primary user personas and their key tasks
+- List the entry paths to this surface (direct link, nav click, search, etc.)
+- Note any constraints (accessibility targets, browser support, device types)
+
+### Step 2: LLM Assessment
+
+Work through each heuristic systematically. For each violation found, note:
+- **Location**: component, page, or flow step
+- **Severity**: P0 (blocking) / P1 (major) / P2 (minor) / P3 (polish)
+- **User impact**: what goes wrong for the user
+- **Recommendation**: specific fix
+
+### Step 3: Automated Scan
+
+Run in an isolated browser tab to avoid context contamination:
+
+```bash
+npx impeccable --json > critique-scan.json
+```
+
+Review the JSON output for:
+- Contrast failures
+- Missing ARIA labels
+- Keyboard trap risks
+- Touch target sizes
+- Missing alt text
+- Form label associations
+
+### Step 4: Combined Report
+
+Merge LLM findings and automated findings. Remove duplicates. Assign final severity.
+
+### Step 5: Output Format
+
+Start with the anti-patterns verdict, then executive summary, then detailed findings.
+
+---
+
+## Anti-Patterns Verdict (Always First)
+
+Does this look AI-generated? Be brutally honest. List specific tells:
+
+- Gradient text (background-clip: text)
+- Left/right border stripes on cards (border-left: 3-5px solid color)
+- Purple/blue neon glow on buttons
+- Inter + DM Sans + Outfit font stack
+- Equal 3-column card grids
+- Centered hero (for variance > 4 interfaces)
+- Glassmorphism as decoration
+- Hero metrics with colored backgrounds (green/red stat cards)
+- Generic SVG avatars
+- Round fake numbers (99.99%, 50K users)
+- AI copy clichés in headings ("Elevate", "Seamless", "Unleash")
+
+Verdict: **AI tells detected / Clean / Mostly clean**
+
+---
+
+## Persona Red Flags
+
+Check against these user profiles:
+
+**Alex (power user / expert)**
+- Cannot access keyboard shortcuts
+- No way to reduce animation / density
+- Forced through confirmation dialogs for frequent operations
+- No bulk actions on lists
+- Pagination with no "items per page" control
+
+**Jordan (first-timer / novice)**
+- Error messages use technical jargon
+- No empty state with guidance
+- Primary action not visually obvious
+- No progressive disclosure — everything shown at once
+- No undo for destructive actions
+
+---
+
+## Cognitive Load Checklist
+
+High cognitive load symptoms:
+- [ ] More than 7 items in any navigation or menu (Miller's Law)
+- [ ] Multiple competing CTAs — user doesn't know where to click
+- [ ] Critical info only visible on hover
+- [ ] Form with more than 7 fields without sections/grouping
+- [ ] No visual hierarchy — everything same weight
+- [ ] Terminology inconsistency across same flow
+- [ ] Required context must be remembered from a previous screen
+- [ ] No confirmation/success state after completing an action
+
+---
+
+## Full Output Template
+
+```
+## Anti-Patterns Verdict
+[Pass/Fail + specific tells listed]
+
+## Executive Summary
+Score: [X]/40 — [Rating]
+Issues: P0: [n] / P1: [n] / P2: [n] / P3: [n]
+Top issues: [3-5 bullet points]
+Next steps: [recommended commands]
+
+## Heuristic Scores
+| # | Heuristic | Score | Key Finding |
+|---|-----------|-------|-------------|
+| 1 | Visibility of system status | [0-4] | [finding] |
+...
+| Total | | [X]/40 | |
+
+## Detailed Findings
+
+### P0 — Blocking
+[Issue location] · [Category] · [Impact] · [Recommendation] · [Command]
+
+### P1 — Major
+...
+
+### P2 — Minor
+...
+
+### P3 — Polish
+...
+
+## Systemic Patterns
+[Recurring issues indicating a system-level gap]
+
+## Positive Findings
+[What's working well — good practices to replicate]
+
+## Recommended Actions (Priority Order)
+1. [Command] — [why first]
+...
+```
