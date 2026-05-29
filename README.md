@@ -1,59 +1,93 @@
-# claude-skills
+# skill-issue
 
-A consolidated Claude Code skill kit — 8 general-purpose skills covering design, code quality, testing, iOS/Swift, Python, writing, and output completeness.
+8 Claude Code skills I've built up and actually use. design, code quality, testing, iOS/Swift, Python, prose editing, and a skill that stops Claude from truncating everything.
 
-## Skills
+each skill handles multiple modes instead of being a single-purpose wrapper.
 
-| Skill | Invoke | What it does |
-|-------|--------|-------------|
-| `check` | `/check [audit\|harden\|normalize\|adapt\|optimize]` | Code quality, security hardening, env normalization, API adaptation, perf audits |
-| `design` | `/design [mode]` | 14-mode UI/UX system (surface, full-app, critique, polish, redesign, brutalist, minimal, high-end, and more) |
-| `full-output-enforcement` | auto-fires | Prevents truncated code — no `// ...`, no skeleton outputs, handles token-limit splits cleanly |
-| `ios` | `/ios` | Swift/SwiftUI patterns, Swift 6 concurrency, HIG compliance |
-| `paulgraham` | `/paulgraham` | Edits prose to Paul Graham's style — short sentences, direct claims, cut filler |
-| `python` | `/python` | Python conventions, type hints, uv, idiomatic patterns |
-| `test` | `/test [eval\|char]` | AI eval harnesses (EDD) + characterization tests before refactors |
-| `tune` | `/tune` | Design dial adjustments — tweak color, motion, spacing, density after `/design` |
+---
 
-## Setup (2 steps)
+## the skills
 
-### 1. Install the Skill runtime
+| skill | invoke | what it does |
+| ----- | ------ | ------------ |
+| `/design` | `/design [mode]` | 14 modes: surface layout, full-app design, critique, polish, redesign, brutalist, minimal, high-end. covers the full design workflow in one skill |
+| `/tune` | `/tune` | dial adjustments after `/design`. tweak color, motion, spacing, or density without starting over |
+| `/check` | `/check [audit\|harden\|normalize\|adapt\|optimize]` | code quality audit, security hardening, env normalization, API adaptation, Core Web Vitals + bundle perf |
+| `/test` | `/test [eval\|char]` | two modes: `eval` for AI capability benchmarking (define evals before you build), `char` for freezing current behavior as tests before a big refactor |
+| `/ios` | `/ios` | Swift/SwiftUI patterns, Swift 6 concurrency, HIG compliance |
+| `/python` | `/python` | Python conventions, type hints, uv, idiomatic patterns |
+| `/paulgraham` | `/paulgraham` | rewrites your prose the way PG writes: short sentences, direct claims, cut everything that doesn't need to be there |
+| `full-output-enforcement` | auto-fires | stops Claude from truncating code with `// ...` or "I can provide more if needed." handles token-limit splits cleanly |
 
-Skills need a Skill tool to auto-invoke. Install `superpowers` from the Claude Code marketplace:
+---
 
+## setup
+
+you need [Claude Code](https://claude.ai/code). two steps.
+
+**1. install the superpowers plugin** (this is what makes skills auto-invoke):
+
+open Claude Code and run:
 ```
-# In Claude Code, run:
-/install-plugin superpowers
+claude plugin install superpowers@claude-plugins-official
 ```
 
-Or go to **Claude Code → Settings → Plugins → Browse** and install `superpowers@claude-plugins-official`.
-
-> **No plugin?** Skills still work — just paste the relevant SKILL.md into your conversation and tell Claude to follow it.
-
-### 2. Clone skills into `~/.claude/skills/`
+**2. clone the skills into `~/.claude/skills/`:**
 
 ```bash
-git clone https://github.com/jeevankarandikar/claude-skills.git /tmp/claude-skills-setup
-cp -r /tmp/claude-skills-setup/* ~/.claude/skills/
-rm -rf /tmp/claude-skills-setup
+git clone https://github.com/jeevankarandikar/skill-issue.git /tmp/skill-issue
+mkdir -p ~/.claude/skills
+cp -r /tmp/skill-issue/* ~/.claude/skills/
+rm -rf /tmp/skill-issue
 ```
 
-Or clone directly:
-```bash
-git clone https://github.com/jeevankarandikar/claude-skills.git ~/.claude/skills
-```
+restart Claude Code. type `/design critique` or `/check audit` to verify.
 
-> If `~/.claude/skills/` already has files, use the `cp` approach above to merge.
+---
 
-Restart Claude Code and the skills are live. Type `/design critique` or `/check audit` to verify.
+## how it works
 
-## Updating
+once superpowers is installed, skills auto-fire when relevant. you can also invoke any skill directly by name.
 
 ```bash
-cd ~/.claude/skills  # or wherever you cloned it
-git pull
+# ui work
+/design full-app          # full-app layout + component system
+/tune                     # adjust after first pass
+
+# before a big refactor
+/test char                # freeze current behavior as tests first
+# after shipping
+/check audit              # quality pass
+
+# writing
+/paulgraham               # rewrite in PG style
+
+# platform-specific
+/ios                      # Swift/SwiftUI
+/python                   # Python
 ```
 
-## What's NOT included
+---
 
-Personal skills (`voice`, `coding-profile`) live in a private repo — they contain personal writing history, application drafts, and project conventions specific to one person.
+## adding your own skills
+
+create a directory in `~/.claude/skills/` with a `SKILL.md` file. the frontmatter needs at minimum:
+
+```yaml
+---
+name: your-skill-name
+description: Use when [triggering conditions]
+---
+```
+
+superpowers picks it up on restart.
+
+---
+
+## updating
+
+```bash
+cd /tmp && git clone https://github.com/jeevankarandikar/skill-issue.git
+cp -r skill-issue/* ~/.claude/skills/
+rm -rf skill-issue
+```
