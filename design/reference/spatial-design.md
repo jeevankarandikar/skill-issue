@@ -41,6 +41,8 @@ Don't rely on size alone. Combine:
 
 **The best hierarchy uses 2-3 dimensions at once**: A heading that's larger, bolder, AND has more space above it.
 
+**Emphasize by de-emphasizing.** When the primary element won't stand out, the fix is usually to *quiet the competition*, not to shout louder. Mute the secondary text, thin the borders, desaturate the supporting chrome — the hero rises without touching it. Turning everything up is how you end up with a loud, flat screen that has no focal point at all.
+
 ### Cards Are Not Required
 
 Cards are overused. Spacing and alignment create visual grouping naturally. Use cards only when content is truly distinct and actionable, items need visual comparison in a grid, or content needs clear interaction boundaries. **Never nest cards inside cards**—use spacing, typography, and subtle dividers for hierarchy within a card.
@@ -93,7 +95,20 @@ Buttons can look small but need large touch targets (44px minimum). Use padding 
 
 ## Depth & Elevation
 
-Create semantic z-index scales (dropdown → sticky → modal-backdrop → modal → toast → tooltip) instead of arbitrary numbers. For shadows, create a consistent elevation scale (sm → md → lg → xl). **Key insight**: Shadows should be subtle—if you can clearly see it, it's probably too strong.
+Create semantic z-index scales (dropdown → sticky → modal-backdrop → modal → toast → tooltip) instead of arbitrary numbers.
+
+### Shadows: One Light Source
+
+Every shadow on the page comes from the same imaginary light — above and slightly in front. That means **vertical offset is larger than horizontal (roughly 2:1), and horizontal offset stays near 0**. Mixed light directions are the fastest way to make a UI feel assembled by committee.
+
+- **Elevation moves three values together.** As an element rises, the y-offset grows, the blur grows, and the opacity *drops*. A higher card isn't a darker shadow — it's a softer, more diffuse one.
+- **Layer shadows for realism.** Stack 4-6 box-shadows at doubling offsets (1px, 2px, 4px, 8px, 16px) at low opacity instead of one heavy shadow. Near layers read as contact, far layers as ambient.
+- **Tint the shadow, never pure black.** A black shadow desaturates the colors beneath it and reads as cheap. Shift the shadow hue toward the surface/brand hue and lower its lightness — same logic as tinted neutrals in [color-and-contrast.md](color-and-contrast.md).
+- **Subtle wins.** If you can clearly see a shadow *as a shadow*, it's too strong. Build a scale (sm → md → lg → xl) and reuse it.
+
+### Pick One Separator
+
+To set an element apart from its surroundings, use **one** of: a shadow, a border, or a background-color shift. Not two, never all three. Stacking separators is the "admin dashboard" look — every panel shouting for the same attention. Decide which one carries the separation and delete the rest.
 
 ---
 

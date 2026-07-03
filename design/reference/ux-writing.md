@@ -16,6 +16,19 @@
 - "Delete" not "Remove" (delete is permanent, remove implies recoverable)
 - "Delete 5 items" not "Delete selected" (show the count)
 
+## Labels Are a Last Resort
+
+Before adding a label, check whether the value can carry it. "In stock: 12" is two pieces of text doing one job; **"12 left in stock"** is one. Fold the label into the sentence, the unit, or the format whenever the meaning survives without it.
+
+| Labeled | Folded |
+|---------|--------|
+| Price: $49 | $49 |
+| Due date: Mar 4 | Due Mar 4 |
+| Status: Active | Active (as a colored pill) |
+| Members: 1,204 | 1,204 members |
+
+Keep explicit labels for form inputs (they need a persistent target) and for data tables where a column header labels every cell below it. Everywhere else, a label is often just clutter you can delete.
+
 ## Error Messages: The Formula
 
 Every error message should answer: (1) What happened? (2) Why? (3) How to fix it? Example: "Email address isn't valid. Please include an @ symbol." not "Invalid input".

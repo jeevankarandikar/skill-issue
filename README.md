@@ -1,6 +1,6 @@
 # skill-issue
 
-8 Claude Code skills I've built up and actually use. design, code quality, testing, iOS/Swift, Python, prose editing, and a skill that stops Claude from truncating everything.
+9 Claude Code skills I've built up and actually use. design, code quality, testing, iOS/Swift, Python, prose editing, engineering research, and a skill that stops Claude from truncating everything.
 
 each skill handles multiple modes instead of being a single-purpose wrapper.
 
@@ -17,6 +17,7 @@ each skill handles multiple modes instead of being a single-purpose wrapper.
 | `/ios` | `/ios` | Swift/SwiftUI patterns, Swift 6 concurrency, HIG compliance |
 | `/python` | `/python` | Python conventions, type hints, uv, idiomatic patterns |
 | `/paulgraham` | `/paulgraham` | rewrites your prose the way PG writes: short sentences, direct claims, cut everything that doesn't need to be there |
+| `/research` | `/research [topic]` | engineering research harness: fans out parallel gatherers (papers, OSS repos, ecosystem) on cheap models, synthesizes on a strong one, lands a cited adopt/skip/watchlist memo mapped to your repo |
 | `full-output-enforcement` | auto-fires | stops Claude from truncating code with `// ...` or "I can provide more if needed." handles token-limit splits cleanly |
 
 ---

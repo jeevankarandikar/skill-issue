@@ -13,6 +13,8 @@ Timing matters more than easing. These durations feel right for most UI:
 
 **Exit animations are faster than entrances**—use ~75% of enter duration.
 
+**Duration scales with distance.** The table is a starting point, not a constant. A tooltip nudging in 4px should sit near the floor (~120ms); a panel sliding across half the viewport earns the ceiling. Match the time to how far the element actually travels and how much screen it covers — one fixed duration applied to both makes the small move feel sluggish and the big move feel abrupt.
+
 ## Easing: Pick the Right Curve
 
 **Don't use `ease`.** It's a compromise that's rarely optimal. Instead:

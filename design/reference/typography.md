@@ -28,6 +28,21 @@ Use `ch` units for character-based measure (`max-width: 65ch`). Line-height scal
 
 **Non-obvious**: Increase line-height for light text on dark backgrounds. The perceived weight is lighter, so text needs more breathing room. Add 0.05-0.1 to your normal line-height.
 
+Keep the measure inside **45-75ch**. Below 45 the eye snaps back too often; above 75 it loses the start of the next line.
+
+### Tracking (Letter-Spacing)
+
+Default tracking is tuned for body sizes. Large display type set at default spacing reads as "didn't bother" — it looks ~30% less intentional than the same headline tightened.
+
+- **Display / headlines**: tighten to `-0.02em` to `-0.04em` (`tracking-tight` / `tracking-tighter`). The bigger the type, the tighter.
+- **Body**: leave at default (`0`). Never track-tighten paragraph text.
+- **All-caps / small labels**: open up `+0.05em` to `+0.1em` — caps need air.
+
+### Wrapping
+
+- **Headlines**: `text-wrap: balance` so the last line isn't a lonely orphan.
+- **Body / paragraphs**: `text-wrap: pretty` — kills orphans without rebalancing every line above.
+
 ## Font Selection & Pairing
 
 ### Choosing Distinctive Fonts

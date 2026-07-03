@@ -2,6 +2,13 @@
 
 Full protocol for `/design critique`. Pair with automated scan (`npx impeccable --json`).
 
+**Two rules that separate a critique from a complaint:**
+
+1. **Never ship a bare critique — produce the improved version.** Every finding carries a concrete fix: the exact replacement copy, the corrected spacing value, the specific component. Not "this is weak." If you can't say what better looks like, the critique isn't finished.
+2. **Name *why* it works or fails.** Not "this feels off" — "the modal animates from `scale(0)`, so it pops instead of growing from its trigger." Articulating the reason is what compounds into taste; vague reactions don't.
+
+Apply the **deference** lens throughout (Apple HIG): the interface exists to serve the content, not to compete with it. Decoration that draws attention to itself is a finding.
+
 ---
 
 ## Nielsen's 10 Heuristics (Score 0-4 each, total /40)
@@ -83,6 +90,13 @@ Does this look AI-generated? Be brutally honest. List specific tells:
 - Generic SVG avatars
 - Round fake numbers (99.99%, 50K users)
 - AI copy clichés in headings ("Elevate", "Seamless", "Unleash")
+- Interpunct `·`/`•` as a metadata separator (`Title · Company · Location`, eyebrows)
+- One headline word recolored in the accent ("...are they **now?**")
+- Flat color-field / diagonal-gradient hero instead of real content/photography
+- Even N-up stat bar (4 equal-weight metrics in a row)
+- Bare `—` filling empty card fields (unfinished-scaffold look)
+- Cute number-rhyme headlines ("Three tabs. Three jobs.")
+- Top filter-chip bar where a faceted left rail is the convention
 
 Verdict: **AI tells detected / Clean / Mostly clean**
 

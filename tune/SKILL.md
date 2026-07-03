@@ -4,7 +4,6 @@ description: Design dial adjustments for a single dimension. Use when the user w
 version: 1.0.0
 user-invocable: true
 argument-hint: "[bolder | quieter | colorize | distill | typeset | animate | delight | clarify | overdrive]"
-disable-model-invocation: true
 ---
 
 Design adjustment dials. Each mode targets one dimension for a focused improvement pass.

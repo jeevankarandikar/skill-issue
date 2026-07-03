@@ -1,15 +1,18 @@
 ---
 name: design
-description: Full-pipeline design skill. Use when building a new feature, redesigning a surface, generating a DESIGN.md, designing onboarding flows, or any time UX planning, taste rules, production-grade UI implementation, or micro-interaction polish is needed. Invoke with a surface name for the full pipeline, or a mode keyword.
-version: 3.0.0
+description: Full-pipeline design skill. Use when building a new feature, redesigning a surface, generating a DESIGN.md, designing onboarding flows, or any time UX planning, taste rules, production-grade UI implementation, interactive direction exploration, brand-asset generation, or micro-interaction polish is needed. Invoke with a surface name for the full pipeline, or a mode keyword.
+version: 4.0.0
 user-invocable: true
-argument-hint: "[surface | full-app | teach | generate-design-md | onboard | extract | arrange | critique | polish | redesign | high-end | brutalist | minimal]"
-disable-model-invocation: true
+argument-hint: "[surface | lab | assets | full-app | teach | generate-design-md | onboard | extract | arrange | critique | polish | redesign | high-end | brutalist | minimal]"
 ---
 
 # Design
 
 Everything design in one skill — UX structure → taste rules → DESIGN.md → production code → micro-interaction polish → onboarding flows.
+
+**New to a project, or no design context yet? Start with `/design lab [surface]`** — it renders a few real directions to react to, needs zero setup, and infers the rest from what you pick.
+
+The bans here aren't personal quirks. Anthropic's own frontend-design skill and Vercel's v0 independently ban the same tells — purple/violet gradients and converging on reflex fonts (Inter, Space Grotesk). When justifying or killing a direction, reason from named priors rather than asserting taste: [reference/design-priors.md](reference/design-priors.md).
 
 ---
 
@@ -18,6 +21,8 @@ Everything design in one skill — UX structure → taste rules → DESIGN.md �
 | Invocation | What it does |
 |---|---|
 | `/design [surface]` | Full pipeline for one surface: shape → taste → build → polish |
+| `/design lab [surface]` | Interactive exploration: render 2-3 distinct directions, react and refine, lock the winner — the visual, low-setup on-ramp |
+| `/design assets [icons\|og\|favicon\|logo]` | Generate brand assets — all keyless; OG/icons/favicons by codegen, logos as SVG or a paste-ready image prompt |
 | `/design full-app` | Full pipeline across all surfaces (prompts for surface list) |
 | `/design teach` | Set up design context for the project (writes `.impeccable.md`) |
 | `/design generate-design-md` | Generate or update `DESIGN.md` only |
@@ -30,7 +35,7 @@ Everything design in one skill — UX structure → taste rules → DESIGN.md �
 | `/design high-end` | Vanguard UI aesthetic — double-bezel, variance engine, spring physics |
 | `/design brutalist` | Industrial/terminal aesthetic — Swiss print or CRT mode, hazard red only |
 | `/design minimal` | Editorial minimalist — warm monochrome, washed pastels, invisible motion |
-| `/design` | Ask what to design |
+| `/design` | Ask what to design — for a new surface, point them to `lab` |
 
 ---
 
@@ -46,7 +51,9 @@ Design work produces generic output without project context. You MUST have confi
 **Gathering order:**
 1. Check loaded instructions for a `## Design Context` section — if present, proceed.
 2. Check `.impeccable.md` in the project root — if it exists with required context, proceed.
-3. If neither: STOP and run teach mode. Do NOT infer context from code. Code shows what was built, not who it's for.
+3. If neither: run teach mode — **or `/design lab`** ([reference/design-lab.md](reference/design-lab.md)), which proposes directions with minimal setup and infers context from what the user reacts to (the low-friction on-ramp for new projects and users). Either way, do NOT silently infer context from code — code shows what was built, not who it's for.
+
+**Once the product's vertical is known** (fintech, dev tool, healthcare, e-commerce, AI product, B2B SaaS, consumer/social…), consult [reference/industry-context.md](reference/industry-context.md) for its constraints, anti-patterns, mood, and the tensions to decide deliberately — then fetch live execution references via the lazyweb/refero MCPs. It's vertical-aware fuel: what the category demands and why, without prescribing a look.
 
 ---
 
@@ -108,9 +115,27 @@ Ask if they also want this appended to `.github/copilot-instructions.md`.
 
 ---
 
+## Lab Mode (`/design lab`)
+
+The visual, low-setup on-ramp — render 2-3 distinct directions, react, refine, lock the winner into DESIGN.md. Built for cold-start (no `.impeccable.md` needed; context comes from what the user reacts to). Routes to the right comparison surface by platform + decision scale: static gallery (broad direction) / live playground (small tweak) / Playwright loop (full build or audit) / Xcode previews (native Apple).
+
+→ *Full protocol — router, the 5 schools, the four anchors, the self-contained `design-lab.html`, the 5-dimension ship rubric: [reference/design-lab.md](reference/design-lab.md)*
+
+---
+
+## Assets Mode (`/design assets`)
+
+Generate brand assets **codegen-first** — deterministic where the asset is structural, and **keyless throughout**. OG images (satori), icon sets (Iconify assembly), and favicons (pwa-asset-generator) are free. Logos are too: **SVG authored by the running model** (wordmark/geometric), or — for illustrative marks — a **ready-to-paste image-gen prompt** for whatever image tool the user already has (ChatGPT/Gemini/Midjourney/Recraft). API keys are an opt-in automation, never required. Runnable scripts live in `scripts/assets/`.
+
+→ *Per-asset tooling, the free/gated split, and the scripts: [reference/asset-gen.md](reference/asset-gen.md)*
+
+---
+
 ## Phase 1: Shape (UX Planning)
 
 Do NOT write code during this phase. Understand deeply first so implementation is precise.
+
+→ *UX laws that should inform the brief — Hick's, Fitts's, Jakob's, Miller's, Peak-End, Von Restorff: [reference/ux-laws.md](reference/ux-laws.md). UX copy — labels, errors, empty states, microcopy: [reference/ux-writing.md](reference/ux-writing.md)*
 
 ### Discovery Interview
 
@@ -237,7 +262,7 @@ Step 4. Cross-check: if your pick lines up with your reflex pattern, go back to 
 
 ### Layout
 
-→ *Deep material on grids, container queries, optical adjustments: [reference/spatial-design.md](reference/spatial-design.md)*
+→ *Deep material on grids, container queries, optical adjustments: [reference/spatial-design.md](reference/spatial-design.md). Adapting across breakpoints, print, and email: [reference/responsive-design.md](reference/responsive-design.md)*
 
 **Always apply these without consulting the reference:**
 - CSS Grid over flexbox math. Never `calc()` percentage hacks (`w-[calc(33%-1rem)]`).
@@ -252,6 +277,8 @@ Step 4. Cross-check: if your pick lines up with your reflex pattern, go back to 
 - 4pt spacing scale with semantic names: `--space-xs: 4px`, `--space-sm: 8px`, `--space-md: 16px`, `--space-lg: 24px`, `--space-xl: 48px`.
 
 ### Architecture (React / Next.js)
+
+→ *Per-stack design-implementation: [reference/stacks/web.md](reference/stacks/web.md) (Tailwind v4, shadcn, Next App Router) and [reference/stacks/swiftui.md](reference/stacks/swiftui.md) (iOS 26 Liquid Glass). Dashboards & charts: [reference/data-viz.md](reference/data-viz.md).*
 
 - Verify `package.json` before importing any third-party library. Output install command if missing.
 - Default to Server Components (RSC). Global state works ONLY in Client Components.
@@ -317,6 +344,10 @@ Hardware-accelerated transforms only. Isolated client components for CPU-heavy a
 - No centered hero sections (when variance > 4)
 - No `border-left` / `border-right` > 1px as colored accent stripes
 - No gradient text (`background-clip: text` with gradient)
+- No `·` / `•` as a metadata separator in UI (use layout, "at", or commas)
+- No single headline word recolored in the accent (one color; emphasize with weight/underline)
+- No even N-up stat bar (lead with one big number, demote the rest)
+- No bare `—` for empty fields (suppress the field; let heights vary)
 - No AI copywriting clichés ("Elevate", "Seamless", "Unleash", "Next-Gen")
 - No broken Unsplash links — use `picsum.photos/seed/{string}/800/600`
 - No generic placeholder names ("John Doe", "Acme", "Nexus")
@@ -328,6 +359,8 @@ Hardware-accelerated transforms only. Isolated client components for CPU-heavy a
 ---
 
 ## Phase 4: Build (Production Code)
+
+→ *Build + visual-iteration workflow (load references, build, inspect in a browser, iterate): [reference/craft.md](reference/craft.md)*
 
 ### Design Direction
 
@@ -363,6 +396,8 @@ If you showed this to someone and said "AI made this" — would they believe it 
 - Oversaturated accents → desaturate to blend with neutrals
 - Custom mouse cursors → banned
 - Glassmorphism as decoration → purposeful only
+- Flat color-field / diagonal-gradient hero as the whole canvas (the "navy SaaS hero") → lead with real content — photography, product UI, or a data-driven wall (e.g. a mosaic of the actual people/items). Make the brand color an *overlay*, not the subject.
+- One headline word or line recolored in the accent ("Where are they **now?**" with the accent on one word) → single color. If a word needs emphasis, a deliberate underline/rule, not a recolored word (sibling of gradient-text).
 
 **Typography tells:**
 - Any font from the reflex list → banned
@@ -373,6 +408,8 @@ If you showed this to someone and said "AI made this" — would they believe it 
 - 3-column equal card grids → zig-zag, asymmetric grid, or horizontal scroll
 - Centered heroes (variance > 4) → split screen or left-aligned
 - Same padding everywhere → vary for hierarchy
+- The even N-up stat bar (4 metrics in a row, identical weight/size/label) → lead with the one number that matters at large size; demote the rest to a quiet inline run. Equal weight means nothing is the point.
+- Directory/listing with a row of filter chips across the top → for anything faceted, use the industry-standard left filter rail (multi-select facets with live counts) + sort + removable active-filter chips + load-more. It's what Amazon/eBay/LinkedIn users already know (Nielsen: meet conventions).
 
 **Content tells:**
 - Generic names ("John Doe", "Sarah Chan") → creative realistic names
@@ -380,6 +417,17 @@ If you showed this to someone and said "AI made this" — would they believe it 
 - Fake round numbers (99.99%, 50%) → organic data: 47.2%, +1 (312) 847-1928
 - Startup slop names ("Acme", "Nexus", "SmartFlow") → premium contextual names
 - AI copy clichés ("Elevate", "Seamless", "Unleash", "Next-Gen") → concrete verbs
+- Interpunct `·` (or ` • `) sprinkled as a metadata separator (`Title · Company · Location`, `Brand · Tagline` eyebrows) → real layout (separate lines), the word "at", or commas. The sprinkled middle-dot is a dead AI-metadata tell — it shows up the instant a model formats a card subtitle.
+- Em-dashes / bare `—` rendered in place of missing data (a card stub with "—" for every empty field) → suppress the empty field and let card heights vary. A column of dashes reads as unfinished scaffold, not designed sparsity.
+- Cute number-rhyme / wordplay headlines ("Three tabs. Three jobs.", "Five cohorts, one trajectory.") → declarative and specific. Clever loses to clear.
+
+**Effect / library tells (2026):**
+- Bento grid as the default feature section → use only with genuinely varied tile content
+- Spotlight/cursor-glow on every card → at most one accent surface
+- Meteors / shooting stars / aurora-gradient washes → the new purple-gradient; avoid unless the brand is literally space/astro
+- Animated gradient text, rainbow/gradient buttons → solid color; emphasis via weight
+- GitHub-globe, magnetic-everything, particle fields → reserve for genuinely maximalist, on-brand briefs
+- Uniform fade-in on every element → orchestrate one staggered reveal, or none
 
 ### Interactive States (Always Generate All Four)
 
@@ -390,7 +438,7 @@ If you showed this to someone and said "AI made this" — would they believe it 
 
 ### Creative Arsenal
 
-Pull from these instead of defaulting to generic patterns:
+Pull from these instead of defaulting to generic patterns. **The patterns aren't slop — thoughtless, uniform application is.** A spotlight card, magnetic button, or bento grid is fine *once, with intent*; the tell is the same effect on every element, or the AI-average stack (bento + spotlight + aurora + meteors). One deliberate signature beats ten reflexive effects. Drop-in tasteful primitives: Sonner (toasts), Vaul (drawers), shared-layout `layoutId` tabs; ReactBits / Magic UI as engine-agnostic grab-bags.
 
 **Navigation:** Mac OS Dock magnification, magnetic buttons (cursor pull), Dynamic Island pill, contextual radial menus, floating speed dial, mega menu reveal
 
@@ -410,7 +458,7 @@ Pull from these instead of defaulting to generic patterns:
 
 ## Phase 5: Polish (Micro-Interactions)
 
-→ *Deep material on timing, easing, and reduced motion: [reference/motion-design.md](reference/motion-design.md) and [reference/interaction-design.md](reference/interaction-design.md)*
+→ *Deep material on timing, easing, and reduced motion: [reference/motion-design.md](reference/motion-design.md) and [reference/interaction-design.md](reference/interaction-design.md). Accessible component contracts (roles/states/keyboard): [reference/accessible-patterns.md](reference/accessible-patterns.md)*
 
 Apply after the build is functionally complete. The last 5% that makes work feel crafted.
 

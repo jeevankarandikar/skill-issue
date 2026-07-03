@@ -4,7 +4,6 @@ description: Quality and resilience checks. Use when reviewing technical quality
 version: 1.0.0
 user-invocable: true
 argument-hint: "[audit | harden | normalize | adapt | optimize]"
-disable-model-invocation: true
 ---
 
 Quality checks and hardening for production-ready interfaces.

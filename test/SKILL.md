@@ -4,7 +4,6 @@ description: Testing frameworks for AI systems and refactoring safety. Use when 
 version: 1.0.0
 user-invocable: true
 argument-hint: "[eval | char]"
-disable-model-invocation: true
 ---
 
 # Test
