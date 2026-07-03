@@ -1,6 +1,6 @@
 # skill-issue
 
-9 Claude Code skills I've built up and actually use. design, code quality, testing, iOS/Swift, Python, prose editing, engineering research, and a skill that stops Claude from truncating everything.
+10 Claude Code skills I've built up and actually use. design, code quality, testing, iOS/Swift, Python, prose editing, engineering research, done checks, and a skill that stops Claude from truncating everything.
 
 each skill handles multiple modes instead of being a single-purpose wrapper.
 
@@ -18,6 +18,7 @@ each skill handles multiple modes instead of being a single-purpose wrapper.
 | `/python` | `/python` | Python conventions, type hints, uv, idiomatic patterns |
 | `/paulgraham` | `/paulgraham` | rewrites your prose the way PG writes: short sentences, direct claims, cut everything that doesn't need to be there |
 | `/research` | `/research [topic]` | engineering research harness: fans out parallel gatherers (papers, OSS repos, ecosystem) on cheap models, synthesizes on a strong one, lands a cited adopt/skip/watchlist memo mapped to your repo |
+| `/verify` | `/verify` | checks a diff against the original goal and catches fake-done shortcuts before you mark work complete |
 | `full-output-enforcement` | auto-fires | stops Claude from truncating code with `// ...` or "I can provide more if needed." handles token-limit splits cleanly |
 
 ---
@@ -59,6 +60,7 @@ once superpowers is installed, skills auto-fire when relevant. you can also invo
 /test char                # freeze current behavior as tests first
 # after shipping
 /check audit              # quality pass
+/verify                   # done check before marking work complete
 
 # writing
 /paulgraham               # rewrite in PG style
