@@ -350,31 +350,31 @@ Missing accessibility labels on icon-only buttons. `.frame()` without considerin
 ```
 Reviewing: [FileName.swift]
 
-✅ HIG Compliance
+PASS — HIG Compliance
 - [things that comply well]
 
-⚠️ HIG Issues
+ISSUES — HIG
 1. [File.swift:lineNumber] — [issue]
    Current: [code]
    Fix: [code with explanation]
 
-✅ Font Usage
+PASS — Font Usage
 - [Dynamic Type patterns used well]
 
-⚠️ Font Issues
+ISSUES — Font
 1. [File.swift:lineNumber] — hardcoded size
    Current: .font(.system(size: 14))
    Fix: .font(.subheadline)
 
-✅ Accessibility
+PASS — Accessibility
 - [well-implemented features]
 
-⚠️ Accessibility Issues
+ISSUES — Accessibility
 1. [File.swift:lineNumber] — icon button missing label
    Current: Button { } label: { Image(systemName: "calendar") }
    Fix: .accessibilityLabel("Select date")
 
-📋 Testing Recommendations
+TESTING — Recommendations
 - Test with VoiceOver enabled
 - Test at largest Dynamic Type size
 - Verify in Dark Mode

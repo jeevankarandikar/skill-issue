@@ -20,7 +20,7 @@ Design adjustment dials. Each mode targets one dimension for a focused improveme
 | `/tune clarify` | Fix UX copy — error messages, labels, CTAs, empty states |
 | `/tune overdrive` | Push past conventional limits — WebGL, spring physics, scroll-driven animations |
 
-**Before any mode**: If no DESIGN.md exists in the project yet, run `/design teach` first to establish context.
+**Before any mode**: If no DESIGN.md exists, run `/design generate-design-md` (run `/design teach` first if `.impeccable.md` is also missing).
 
 ---
 
@@ -197,7 +197,7 @@ Fix font choices, hierarchy, sizing, and readability so text feels intentional.
 
 **Weights**: 3-4 max (Regular, Medium, Semibold, Bold). Clear role per weight — stick to it. Load only what's used.
 
-**NEVER**: More than 2-3 font families. Arbitrary sizes — commit to a scale. Body below 16px. `px` for font sizes (use `rem` to respect user settings). Decorative/display fonts for body text. Default to Inter/Roboto/Open Sans when personality matters. Two geometric sans-serifs paired together.
+**NEVER**: More than 2-3 font families. Arbitrary sizes — commit to a scale. Body below 16px. `px` for font sizes (use `rem` to respect user settings). Decorative/display fonts for body text. Never introduce fonts from the design skill's banned reflex list (design SKILL.md Phase 2); replace them on sight. Two geometric sans-serifs paired together.
 
 ### Verify
 - Hierarchy instant at a glance? Body comfortable for long passages? Same-role elements identical throughout? Typography reflects brand? Fonts load without layout shift? WCAG contrast met? Zoomable to 200%?
@@ -226,7 +226,9 @@ One well-orchestrated experience beats scattered animations everywhere.
 
 ### Implement
 
-**Entrances**: Stagger reveals (100-150ms delays), fade + slide. Scroll-triggered via IntersectionObserver. Modal/drawer: smooth slide + fade + backdrop.
+**Entrances**: Stagger reveals (30-80ms delays), fade + slide. Scroll-triggered via IntersectionObserver. Modal/drawer: smooth slide + fade + backdrop.
+
+On any numeric conflict, design SKILL.md Phase 5 wins (design high-end's 80-120ms is an intentional mode exception).
 
 **Micro-interactions**:
 - Button hover: scale 1.02-1.05, color shift, shadow increase
@@ -371,12 +373,6 @@ Fix unclear UX copy, error messages, microcopy, labels, and instructions.
 ## `/tune overdrive`
 
 Push past conventional limits with technically ambitious implementations.
-
-Start your response with:
-```
-──────────── ⚡ OVERDRIVE ─────────────
-》》》 Entering overdrive mode...
-```
 
 **MANDATORY — PROPOSE FIRST**: Think through 2-3 different directions. Present them with trade-offs. Get user confirmation before writing any code. Skipping this risks building something that gets thrown away.
 

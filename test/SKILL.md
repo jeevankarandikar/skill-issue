@@ -10,6 +10,8 @@ argument-hint: "[eval | char]"
 
 Two testing disciplines: eval-driven development for AI systems, and characterization testing to lock behavior before refactoring.
 
+Scope: builds harnesses BEFORE work (evals pre-implementation, characterization pre-refactor). Post-hoc done-checks live in the verify skill.
+
 | Mode | What it does |
 |---|---|
 | `/test eval` | Eval-Driven Development — define evals before implementation, capability + regression gates |
@@ -42,6 +44,8 @@ If you implement first then write evals, you're measuring what you built — not
 | **Human** | High-stakes, ambiguous, or new grader calibration | Flag for async review, don't block pipeline |
 
 Prefer code-based. Use model-based only when determinism is impossible. Human graders should shrink over time as you learn to codify their judgments.
+
+**Model-based grader contract**: the judge prompt MUST contain (a) the 0-3 scale with one concrete example output per score level, (b) an instruction to quote the exact evidence line before emitting the score, (c) temperature 0 / deterministic settings. Calibration gate: run the judge 3x on 10 fixed examples; any example where scores differ across runs = flaky grader, fix before it gates anything. Judge model: opus for release gates, sonnet acceptable for inner-loop iteration.
 
 ### Metrics
 
@@ -213,6 +217,8 @@ Run the tests. Many will fail because you guessed the current behavior wrong.
 ```
 
 Add a comment on every CHARACTERIZATION assert explaining WHY the value might look surprising.
+
+This is the ONLY sanctioned case of editing an assertion to match code - tag such edits CHARACTERIZATION in the test name or a comment so /verify skips them.
 
 #### Phase 5: Verify and Lock
 

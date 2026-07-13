@@ -5,6 +5,8 @@ description: Overrides default LLM truncation behavior. Enforces complete code g
 
 # Full-Output Enforcement
 
+Generation-time twin of the verify skill's post-hoc grep - the banned-pattern list is shared; update both together.
+
 ## Baseline
 
 Treat every task as production-critical. A partial output is a broken output. Do not optimize for brevity — optimize for completeness. If the user asks for a full file, deliver the full file. If the user asks for 5 components, deliver 5 components. No exceptions.
@@ -14,6 +16,8 @@ Treat every task as production-critical. A partial output is a broken output. Do
 The following patterns are hard failures. Never produce them:
 
 **In code blocks:** `// ...`, `// rest of code`, `// implement here`, `// TODO`, `/* ... */`, `// similar to above`, `// continue pattern`, `// add more as needed`, bare `...` standing in for omitted code
+
+Applies to code YOU generate; pre-existing TODOs in files you are editing are out of scope (that's /verify's job).
 
 **In prose:** "Let me know if you want me to continue", "I can provide more details if needed", "for brevity", "the rest follows the same pattern", "similarly for the remaining", "and so on" (when replacing actual content), "I'll leave that as an exercise"
 
@@ -43,7 +47,7 @@ On "continue", pick up exactly where you stopped. No recap, no repetition.
 ## Quick Check
 
 Before finalizing any response, verify:
-- No banned patterns from the list above appear anywhere in the output
+- Scan your own output against the regex `(//|#) ?(\.\.\.|rest of|TODO|implement here|similar to above)|for brevity|and so on|left as an exercise|continue pattern` - any match = rewrite that section in full before responding.
 - Every item the user requested is present and finished
 - Code blocks contain actual runnable code, not descriptions of what code would do
 - Nothing was shortened to save space

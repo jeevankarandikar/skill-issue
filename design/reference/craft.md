@@ -4,7 +4,7 @@ Build a feature with impeccable UX and UI quality through a structured process: 
 
 ## Step 1: Shape the Design
 
-Run /shape, passing along whatever feature description the user provided.
+Run Phase 1: Shape from the design SKILL.md (Discovery Interview → Design Brief) and get the brief confirmed.
 
 Wait for the design brief to be fully confirmed before proceeding. The brief is your blueprint, and every implementation decision should trace back to it.
 

@@ -260,6 +260,8 @@ Step 4. Cross-check: if your pick lines up with your reflex pattern, go back to 
 - Gradient text (`background-clip: text` + gradient) — see absolute bans in Phase 4
 - Warm/cool gray fluctuation within one project
 
+full canonical list: reference/critique.md
+
 ### Layout
 
 → *Deep material on grids, container queries, optical adjustments: [reference/spatial-design.md](reference/spatial-design.md). Adapting across breakpoints, print, and email: [reference/responsive-design.md](reference/responsive-design.md)*
@@ -340,18 +342,9 @@ Hardware-accelerated transforms only. Isolated client components for CPU-heavy a
 - No [reflex font names used in this project's evaluation]
 - No pure black (#000000)
 - No neon/outer glow shadows
-- No 3-column equal card layouts
-- No centered hero sections (when variance > 4)
-- No `border-left` / `border-right` > 1px as colored accent stripes
 - No gradient text (`background-clip: text` with gradient)
-- No `·` / `•` as a metadata separator in UI (use layout, "at", or commas)
-- No single headline word recolored in the accent (one color; emphasize with weight/underline)
-- No even N-up stat bar (lead with one big number, demote the rest)
-- No bare `—` for empty fields (suppress the field; let heights vary)
-- No AI copywriting clichés ("Elevate", "Seamless", "Unleash", "Next-Gen")
-- No broken Unsplash links — use `picsum.photos/seed/{string}/800/600`
-- No generic placeholder names ("John Doe", "Acme", "Nexus")
-- No `h-screen` — always `min-h-[100dvh]`
+
+full canonical list: reference/critique.md
 ```
 
 **Tips:** Be descriptive ("Deep Charcoal Ink (#18181B)" not "dark text"). Be functional (explain what each element is used for). Name colors by purpose, not appearance. Encode the bans — anti-patterns are as important as positive rules.
@@ -390,44 +383,14 @@ Match and refuse — if you find yourself about to write either of these, stop a
 
 If you showed this to someone and said "AI made this" — would they believe it immediately? If yes, that's the problem.
 
-**Visual & CSS tells to eliminate:**
+**Headline tells to eliminate:**
 - Neon/outer glows → inner borders or subtle tinted shadows
-- Pure black → Zinc-950 or Off-Black
-- Oversaturated accents → desaturate to blend with neutrals
-- Custom mouse cursors → banned
-- Glassmorphism as decoration → purposeful only
-- Flat color-field / diagonal-gradient hero as the whole canvas (the "navy SaaS hero") → lead with real content — photography, product UI, or a data-driven wall (e.g. a mosaic of the actual people/items). Make the brand color an *overlay*, not the subject.
-- One headline word or line recolored in the accent ("Where are they **now?**" with the accent on one word) → single color. If a word needs emphasis, a deliberate underline/rule, not a recolored word (sibling of gradient-text).
-
-**Typography tells:**
 - Any font from the reflex list → banned
-- Screaming H1s → control hierarchy with weight and color
-- Serif fonts on dashboards → banned
-
-**Layout tells:**
 - 3-column equal card grids → zig-zag, asymmetric grid, or horizontal scroll
-- Centered heroes (variance > 4) → split screen or left-aligned
-- Same padding everywhere → vary for hierarchy
-- The even N-up stat bar (4 metrics in a row, identical weight/size/label) → lead with the one number that matters at large size; demote the rest to a quiet inline run. Equal weight means nothing is the point.
-- Directory/listing with a row of filter chips across the top → for anything faceted, use the industry-standard left filter rail (multi-select facets with live counts) + sort + removable active-filter chips + load-more. It's what Amazon/eBay/LinkedIn users already know (Nielsen: meet conventions).
-
-**Content tells:**
-- Generic names ("John Doe", "Sarah Chan") → creative realistic names
-- Generic SVG avatars → styled photo placeholders or `picsum.photos/seed/{string}/150/150`
-- Fake round numbers (99.99%, 50%) → organic data: 47.2%, +1 (312) 847-1928
-- Startup slop names ("Acme", "Nexus", "SmartFlow") → premium contextual names
+- Generic names / startup slop names ("John Doe", "Acme", "Nexus") → creative, contextual names
 - AI copy clichés ("Elevate", "Seamless", "Unleash", "Next-Gen") → concrete verbs
-- Interpunct `·` (or ` • `) sprinkled as a metadata separator (`Title · Company · Location`, `Brand · Tagline` eyebrows) → real layout (separate lines), the word "at", or commas. The sprinkled middle-dot is a dead AI-metadata tell — it shows up the instant a model formats a card subtitle.
-- Em-dashes / bare `—` rendered in place of missing data (a card stub with "—" for every empty field) → suppress the empty field and let card heights vary. A column of dashes reads as unfinished scaffold, not designed sparsity.
-- Cute number-rhyme / wordplay headlines ("Three tabs. Three jobs.", "Five cohorts, one trajectory.") → declarative and specific. Clever loses to clear.
 
-**Effect / library tells (2026):**
-- Bento grid as the default feature section → use only with genuinely varied tile content
-- Spotlight/cursor-glow on every card → at most one accent surface
-- Meteors / shooting stars / aurora-gradient washes → the new purple-gradient; avoid unless the brand is literally space/astro
-- Animated gradient text, rainbow/gradient buttons → solid color; emphasis via weight
-- GitHub-globe, magnetic-everything, particle fields → reserve for genuinely maximalist, on-brand briefs
-- Uniform fade-in on every element → orchestrate one staggered reveal, or none
+full canonical list: reference/critique.md
 
 ### Interactive States (Always Generate All Four)
 
@@ -745,7 +708,7 @@ Full UX review of an existing surface. Score against Nielsen's heuristics. Run a
 
 1. **Preparation**: Identify user personas, key tasks, entry paths
 2. **LLM Assessment**: Score each of Nielsen's 10 heuristics 0-4 (total /40)
-3. **Automated Scan**: Run `npx impeccable --json` in a separate browser tab (isolated context)
+3. **Automated Scan**: Run `npx impeccable --json` in the terminal (fresh subagent if context is long); if the command fails, skip the automated scan and note it in the report
 4. **Combined Report**: Merge findings, assign P0-P3, surface systemic patterns
 5. **Recommendations**: Priority-ordered list with specific commands to fix each issue
 

@@ -18,7 +18,8 @@ is never a book report: it is an adoption memo the current repo can act on.
   unless asked.
 - **Full** (a topic with 3+ orthogonal dimensions, or the user says "deep"/"thorough"):
   the Workflow fan-out below. This skill's instructions are the explicit opt-in to
-  call the Workflow tool.
+  call the Workflow tool. (Workflow is main-session only; subagents cannot call it -
+  if unavailable, fall back to parallel background Agent calls.)
 
 ## Full protocol
 
@@ -40,8 +41,10 @@ Split the topic into 3-6 orthogonal dimensions. The standard cuts:
 
 ### 2. Fan out (Workflow, model-delegated)
 
-One agent per dimension. Cost policy is fixed: gatherers on `model: 'sonnet'`,
-synthesis on `model: 'opus'`, never the top tier inside a fan-out. Give every agent a strict task contract: its dimension, a
+One agent per dimension. Cost policy is fixed: gatherers on `model: 'sonnet'`
+(mechanical), synthesis and any evaluator on `model: 'opus'` (judgment tier),
+`haiku` only for link-liveness checks; never let a gatherer judge its own
+findings. Give every agent a strict task contract: its dimension, a
 findings schema, and the project context for relevance judgments.
 
 Schema per agent:

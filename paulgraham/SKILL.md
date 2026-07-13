@@ -46,6 +46,14 @@ For each framework the skill:
 - Include only real flaws. Do not pad to hit a number.
 - Every assumption must be testable before building anything.
 
+Verdict anchors (apply mechanically): STRONG = core assumption testable in
+<=2 weeks AND a named early-adopter currently paying (money or hours) for a
+workaround AND painkiller verdict. WEAK = testable but early-adopter evidence
+hypothetical, OR vitamin-leaning, OR differentiation is only price/quality
+claims. PIVOT = core assumption untestable before building, OR any fatal flaw
+with no mitigation, OR no concrete answer to "why switch from current
+behavior."
+
 ---
 
 ## Framework 1: Pressure test your idea
@@ -68,14 +76,6 @@ building the wrong thing.
    nice-to-have.
 5. Assess the founder-market fit, why am I the right person to build this.
 6. Deliver a brutally honest verdict: strong, weak, or pivot required.
-
-**Rules**:
-
-- Every flaw must be specific to this idea, no generic startup advice.
-- Core assumption must be testable before building anything.
-- Verdict must be direct. Never "it has potential but."
-- Fatal flaws ranked by severity, most dangerous first.
-- Include only real flaws, do not pad to hit a number.
 
 **Output**: Core Assumption -> Fatal Flaws -> Problem Validation ->
 Founder-Market -> Brutal Verdict
@@ -290,7 +290,7 @@ When called with `all` or no argument:
 
 - Write the product. This is validation, not construction.
 - Recommend a tech stack. Orthogonal to PMF.
-- Design the UI. Use `/design` or `/impeccable` for that.
+- Design the UI. Use `/design` for that.
 - Raise money for you. PG can pressure-test your YC application, this
   skill tries to keep you from wasting a month. It is not a VC.
 

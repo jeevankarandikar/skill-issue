@@ -1,6 +1,6 @@
 # UX Critique Protocol
 
-Full protocol for `/design critique`. Pair with automated scan (`npx impeccable --json`).
+Full protocol for `/design critique`. Pair with automated scan (`npx impeccable --json` — see Step 3 for the fallback if it fails).
 
 **Two rules that separate a critique from a complaint:**
 
@@ -51,7 +51,7 @@ Work through each heuristic systematically. For each violation found, note:
 
 ### Step 3: Automated Scan
 
-Run in an isolated browser tab to avoid context contamination:
+Run `npx impeccable --json` in the terminal (fresh subagent if context is long); if the command fails, skip the automated scan and note it in the report:
 
 ```bash
 npx impeccable --json > critique-scan.json
@@ -77,26 +77,54 @@ Start with the anti-patterns verdict, then executive summary, then detailed find
 
 ## Anti-Patterns Verdict (Always First)
 
+This is the canonical AI-slop tells list — SKILL.md's Phase 2/3/4 sections keep only their headline tells and point here for the rest. Add new tells here first, then trim SKILL.md's summaries if needed.
+
 Does this look AI-generated? Be brutally honest. List specific tells:
 
+**Visual & CSS:**
 - Gradient text (background-clip: text)
 - Left/right border stripes on cards (border-left: 3-5px solid color)
 - Purple/blue neon glow on buttons
-- Inter + DM Sans + Outfit font stack
-- Equal 3-column card grids
-- Centered hero (for variance > 4 interfaces)
+- Pure black (#000000) or pure white (#fff) — always tint
+- Warm/cool gray fluctuation within one project
+- Custom mouse cursors
 - Glassmorphism as decoration
 - Hero metrics with colored backgrounds (green/red stat cards)
+- Flat color-field / diagonal-gradient hero instead of real content/photography
+- One headline word recolored in the accent ("...are they **now?**")
+
+**Typography:**
+- Inter + DM Sans + Outfit font stack (or any font from the reflex list)
+- Screaming H1s — control hierarchy with weight and color instead
+- Serif fonts on dashboards
+
+**Layout:**
+- Equal 3-column card grids
+- Centered hero (for variance > 4 interfaces)
+- Same padding everywhere — vary for hierarchy
+- Even N-up stat bar (4 equal-weight metrics in a row)
+- Top filter-chip bar where a faceted left rail is the convention
+
+**Content:**
 - Generic SVG avatars
 - Round fake numbers (99.99%, 50K users)
+- Generic placeholder / startup slop names ("John Doe", "Acme", "Nexus")
 - AI copy clichés in headings ("Elevate", "Seamless", "Unleash")
 - Interpunct `·`/`•` as a metadata separator (`Title · Company · Location`, eyebrows)
-- One headline word recolored in the accent ("...are they **now?**")
-- Flat color-field / diagonal-gradient hero instead of real content/photography
-- Even N-up stat bar (4 equal-weight metrics in a row)
 - Bare `—` filling empty card fields (unfinished-scaffold look)
 - Cute number-rhyme headlines ("Three tabs. Three jobs.")
-- Top filter-chip bar where a faceted left rail is the convention
+
+**Effects/library (2026):**
+- Bento grid as the default feature section
+- Spotlight/cursor-glow on every card
+- Meteors / shooting stars / aurora-gradient washes
+- Animated gradient text, rainbow/gradient buttons
+- GitHub-globe, magnetic-everything, particle fields
+- Uniform fade-in on every element (no orchestrated stagger)
+
+**Structural:**
+- Emojis anywhere in UI
+- `h-screen` instead of `min-h-[100dvh]`
 
 Verdict: **AI tells detected / Clean / Mostly clean**
 
