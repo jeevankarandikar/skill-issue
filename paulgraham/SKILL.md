@@ -1,6 +1,6 @@
 ---
 name: paulgraham
-description: Stress-test a startup idea using Paul Graham's five frameworks - pressure test the idea, validate the real problem, map the real competition, plan the first 10 customers, and design a 2-week MVP. Use when evaluating a new startup idea, auditing an in-flight product for product-market fit, or deciding whether to pivot before building further. Call with a framework name (e.g. `pressure-test`, `validate-problem`, `map-competition`, `first-ten`, `mvp-2-weeks`) to run a single framework, or no argument to run all five in sequence.
+description: Stress-test a startup idea before a month goes into building it. Use for "is this idea any good", "should we pivot", "who are we actually competing with", "how do we get the first ten users", "what is the smallest thing we can ship" - and for auditing an in-flight product that has not found fit. Five frameworks - pressure-test, validate-problem, map-competition, first-ten, mvp-2-weeks - run one by name or all five in sequence. Ends on a verdict: strong, weak, or pivot. Validation only; it does not build the product or pick a stack.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[pressure-test|validate-problem|map-competition|first-ten|mvp-2-weeks|all]"
@@ -37,210 +37,46 @@ For each framework the skill:
 2. Runs the framework's role / task / steps / rules.
 3. Returns the specified output format.
 
-## Rules across all frameworks
+## The shared procedure
 
-- Every flaw must be specific to this idea, no generic startup advice.
-- Verdicts must be direct. Never "it has potential but." Either
-  strong / weak / pivot required.
-- Rank findings by severity, most dangerous first.
-- Include only real flaws. Do not pad to hit a number.
-- Every assumption must be testable before building anything.
+1. Get the idea and the target customer once. If either is missing, ask - one
+   question, then proceed.
+2. Run the named framework's five moves.
+3. Return its output sections, in order, and nothing else.
 
-Verdict anchors (apply mechanically): STRONG = core assumption testable in
-<=2 weeks AND a named early-adopter currently paying (money or hours) for a
-workaround AND painkiller verdict. WEAK = testable but early-adopter evidence
-hypothetical, OR vitamin-leaning, OR differentiation is only price/quality
-claims. PIVOT = core assumption untestable before building, OR any fatal flaw
-with no mitigation, OR no concrete answer to "why switch from current
-behavior."
+Across all five: every flaw is specific to this idea, because generic startup advice
+is the tell that you did not engage with it. Verdicts are direct - strong, weak, or
+pivot, never "it has potential but." Rank by what kills the company soonest. Don't pad
+to a number. Every assumption you surface has to be testable before anything gets
+built.
 
----
-
-## Framework 1: Pressure test your idea
-
-**Role**: You are a Paul Graham-style startup evaluator who has reviewed
-thousands of ideas and knows exactly which ones die in week one and
-which ones become billion dollar companies.
-
-**Task**: Pressure test the startup idea the way Paul Graham evaluates
-YC applications. Find every fatal flaw before a single month is wasted
-building the wrong thing.
-
-**Steps**:
-
-1. Ask for the startup idea description (skip if already provided).
-2. Identify the core assumption that must be true for the business to work.
-3. Find the most likely reasons this idea fails, specific and ranked by
-   severity.
-4. Test the problem, is this a real pain people pay to solve or a
-   nice-to-have.
-5. Assess the founder-market fit, why am I the right person to build this.
-6. Deliver a brutally honest verdict: strong, weak, or pivot required.
-
-**Output**: Core Assumption -> Fatal Flaws -> Problem Validation ->
-Founder-Market -> Brutal Verdict
+**Verdict anchors.** STRONG = the core assumption is testable in two weeks or less
+AND a named early adopter is currently paying money or hours for a workaround AND it
+reads as a painkiller. WEAK = testable, but the early-adopter evidence is hypothetical,
+or it leans vitamin, or the differentiation is only a price or quality claim. PIVOT =
+untestable before building, OR a fatal flaw with no mitigation, OR no concrete answer
+to "why would they switch from what they do today."
 
 ---
 
-## Framework 2: Validate the real problem
+## The five frameworks
 
-**Role**: You are a customer discovery specialist applying Paul
-Graham's "talk to users" framework. The only way to know if a problem
-is real is to find people actively suffering from it and willing to
-pay for a solution.
+| # | Name | The five moves | Output sections |
+|---|---|---|---|
+| 1 | `pressure-test` | core assumption -> most likely failures, ranked -> real pain or nice-to-have -> founder-market fit -> verdict | Core Assumption / Fatal Flaws / Problem Validation / Founder-Market / Brutal Verdict |
+| 2 | `validate-problem` | the specific pain and when it hits -> who feels it most acutely (a person, not a demographic) -> 5 discovery questions about past behavior, never hypothetical intent -> validation criteria -> vitamin or painkiller | Specific Pain / Early Adopter / 5 Questions / Validation Criteria / Vitamin-or-Painkiller |
+| 3 | `map-competition` | what they do today -> direct -> indirect -> the real enemy (the habit) -> genuine differentiation | Current Behavior / Direct / Indirect / Real Enemy / Differentiation |
+| 4 | `first-ten` | where those ten people already are -> manual outreach -> the actual first message -> behavioral success criteria -> week-by-week to ten | Where They Are / Approach / First Message / Success Criteria / Milestones |
+| 5 | `mvp-2-weeks` | the single riskiest assumption -> minimum feature set to test it -> what gets cut -> behavioral test criteria -> day-by-day to real users | Core Assumption / Minimum Set / What Gets Cut / Test Criteria / 2-Week Plan |
 
-**Task**: Validate whether the startup idea solves a real problem
-people pay for, or a problem the founder invented in their head that
-nobody actually has.
+### Framework-specific deltas
 
-**Steps**:
-
-1. Ask for the startup idea and target customer (skip if already
-   provided).
-2. Define the specific pain. Exactly what frustration the customer
-   experiences and when.
-3. Identify who has this problem most acutely, the early adopter
-   profile.
-4. Design 5 customer discovery questions that reveal truth without
-   leading the witness.
-5. Define validation criteria. What specific signals prove the problem
-   is real and urgent.
-6. Flag if the problem is a vitamin or a painkiller, and what that
-   means for the business.
-
-**Rules**:
-
-- Problem must be felt with enough frequency and intensity that
-  customers actively seek a fix.
-- Early adopter must be a specific person, not a demographic.
-- Discovery questions must be open-ended and ask about past behavior,
-  never hypothetical intent.
-- Vitamin vs painkiller verdict must be explicit, never implied.
-- Test: are people currently cobbling together a solution because
-  nothing exists.
-
-**Output**: Specific Pain -> Early Adopter Profile -> 5 Discovery
-Questions -> Validation Criteria -> Vitamin or Painkiller Verdict
-
----
-
-## Framework 3: Map your real competition
-
-**Role**: You are a competitive intelligence analyst applying Paul
-Graham's "what are people doing now" framework. The most dangerous
-competitor is never the obvious one. It's the current behavior your
-product has to replace.
-
-**Task**: Map every real competitor the startup faces, including the
-invisible ones most founders never see until it's too late.
-
-**Steps**:
-
-1. Ask for the startup idea and target customer (skip if already
-   provided).
-2. Identify what customers currently do instead of using the product.
-3. Map direct competitors, companies solving the exact same problem.
-4. Map indirect competitors, alternatives customers use that solve the
-   same pain differently.
-5. Identify the real enemy. The behavior or habit the product must
-   replace.
-6. Assess genuine differentiation. Why would someone switch from what
-   they do now.
-
-**Rules**:
-
-- "We have no competition" is always wrong. Flag it immediately.
-- Current behavior is always a competitor. Never ignore it.
-- Differentiation must be specific, not "we're better" or "we're
-  cheaper."
-- Every competitor assessed on awareness, switching cost, and
-  satisfaction level.
-- Test: why would my target customer switch from what they do today.
-
-**Output**: Current Behavior -> Direct Competitors -> Indirect
-Competitors -> Real Enemy -> Genuine Differentiation
-
----
-
-## Framework 4: Find your first 10 customers
-
-**Role**: You are an early traction specialist applying Paul Graham's
-"do things that don't scale" framework. The fastest path to
-product-market fit is finding 10 people who use and pay for the
-product before building anything automated.
-
-**Task**: Build a specific plan to find and convert the first 10
-customers, manually, personally, and before building anything
-automated.
-
-**Steps**:
-
-1. Ask for the startup idea and target customer (skip if already
-   provided).
-2. Identify exactly where the first 10 customers are right now.
-   Specific communities, forums, or networks.
-3. Design the manual outreach approach. How to reach them personally
-   without automation.
-4. Write the first message. Specific, personal, and asking for nothing
-   except a conversation.
-5. Define what success looks like with the first 10. What they must do
-   to prove real demand.
-6. Build a weekly milestone plan, from zero to 10 customers with
-   specific actions each week.
-
-**Rules**:
-
-- First 10 customers found manually. No ads, no automation, no scale.
-- Outreach must be personal. Mass messages reveal nothing useful.
-- First message must ask for a conversation, never a sale.
-- Success criteria must be behavioral. Payments or repeated use, not
-  "they seem interested."
-- Test: are these 10 customers doing something observable that proves
-  demand.
-
-**Output**: Where First 10 Are -> Manual Outreach Approach -> First
-Message -> Success Criteria -> Weekly Milestone Plan
-
----
-
-## Framework 5: Build your MVP in 2 weeks
-
-**Role**: You are an MVP architect applying Paul Graham's "build
-something people want" framework. The only purpose of an MVP is to
-test the single most important assumption as fast and cheaply as
-possible.
-
-**Task**: Design the smallest possible version of the product that
-tests the core assumption, built in 2 weeks, launched to real users,
-and generating real signal.
-
-**Steps**:
-
-1. Ask for the startup idea and core assumption (skip if already
-   provided).
-2. Identify the single most important assumption that must be true for
-   the business to work.
-3. Design the minimum feature set. Only what's needed to test that
-   assumption.
-4. Cut everything else. Every feature that doesn't test the core
-   assumption gets removed.
-5. Define the test criteria. What specific user behavior proves or
-   disproves the assumption.
-6. Build a 2-week launch plan, day by day from zero to first real
-   users.
-
-**Rules**:
-
-- MVP tests the single riskiest assumption. Bundled sub-assumptions
-  only if they cannot be tested separately.
-- Every feature not required for the test gets cut. No exceptions.
-- Test criteria must be behavioral, not "users said they liked it."
-- 2-week plan must end with real users, not internal testing.
-- Test: if this assumption is wrong, does the entire business model
-  change.
-
-**Output**: Core Assumption -> Minimum Feature Set -> What Gets Cut ->
-Test Criteria -> 2-Week Launch Plan
+- **3:** "we have no competition" is always wrong - flag it on sight. Current behavior
+  is always a competitor, and usually the one that wins.
+- **4:** manual only. No ads, no automation. The first message asks for a
+  conversation, never a sale.
+- **5:** every feature that does not test the core assumption gets cut. The plan ends
+  with real users, not internal testing.
 
 ---
 

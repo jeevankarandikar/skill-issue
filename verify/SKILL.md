@@ -1,6 +1,6 @@
 ---
 name: verify
-description: Done check for code changes. Use after implementation, before marking a task done, before ship/commit verification, and inside autonomous loops. Reviews the diff against the original goal and hunts fake-done shortcuts.
+description: Done check for a code change. Use after implementing, before calling anything done, before commit or ship verification, and as the grader inside an autonomous loop. Greps the diff for shortcuts, runs the project's own test command, and maps each requirement to the hunk that satisfies it - evidence, not assertions. Also owns the pause-and-resume protocol for output that hits the token ceiling, and the definitions of the named failure modes SOUL refers to. Pre-work eval harnesses are the test skill; state-scoped frontend quality is the check skill.
 version: 1.1.0
 user-invocable: true
 argument-hint: "[goal or diff scope]"
@@ -10,11 +10,6 @@ argument-hint: "[goal or diff scope]"
 
 Assume the change is not done until the source proves otherwise. The point is
 to keep the maker from grading its own homework.
-
-Scope: diff-scoped done-check against the original goal. State-scoped frontend
-quality lives in the check skill; pre-work eval harnesses in the test skill.
-The banned-pattern greps below are shared with full-output-enforcement (its
-generation-time twin) - update both together.
 
 ## Dispatch (who runs this)
 
@@ -81,6 +76,33 @@ explicitly:
 9. **Silent decision** - schema, auth, data, UX, or compatibility choice made without surfacing it.
 10. **Pass-by-mock** - test mocks the behavior it claims to verify.
 11. **Off-spec done** - code works, but solves a different goal.
+12. **Truncated deliverable** - the response stopped short of the requested scope
+    without a pause marker, or a code block substitutes a description of the code for
+    the code.
+
+## Named failure modes
+
+Naming one is the signal to stop, not to push through. Definitions live here so the
+names can be used elsewhere without restating them.
+
+- **Kitchen Sink** - restructuring half the codebase while in there for one change.
+- **Wrong Abstraction** - abstracting before the rule of three. Copy-paste twice first.
+- **Optimistic Path** - happy path coded, the error or the 500 ignored.
+- **Runaway Refactor** - a fix cascading until the diff is unrecognizable.
+- **Plausible Slop** - confident code, sources, or counts that were never checked.
+
+## Long outputs
+
+When a deliverable will not fit in one response, stop at a clean boundary - end of a
+function, end of a file, end of a section - at full quality. Don't compress the
+remaining sections to squeeze them in, and don't skip to a conclusion. Close with:
+
+```
+[PAUSED - X of Y complete. Send "continue" to resume from: next section name]
+```
+
+On "continue", resume exactly where you stopped. No recap, no re-emission of what
+already landed.
 
 ## Output
 

@@ -1,6 +1,6 @@
 ---
 name: research
-description: Engineering research harness. Use when the user wants to learn from and adopt outside work — "research X", "state of the art", "what are the best papers/repos on Y", "how does Z do it", "what should we borrow/adopt/build off", "look into these tools". Fans out parallel gatherers (papers, OSS repos, ecosystem) on cheap models via Workflow, synthesizes on a strong model, lands a cited adoption memo (validated / adopt now / skip / watchlist) mapped to the project at hand. Distinct from deep-research (general fact-finding reports): this is for engineering practice you intend to use.
+description: Engineering research that ends in an adoption decision, not a report. Use when the user wants to learn from outside work and act on it - "research X", "state of the art on Y", "best papers or repos for Z", "how does <company> do this", "what should we borrow", "look into these tools", or a pasted list of repos, plugins, or libraries to evaluate. Fans gatherers out on cheap models, judges once on a strong one, lands a cited memo (validated / adopt now / skip / watchlist) mapped to named components of the repo in front of it. General fact-finding reports go to deep-research instead.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[topic, question, or a pasted list of things to evaluate]"
