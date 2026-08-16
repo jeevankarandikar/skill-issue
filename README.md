@@ -1,6 +1,6 @@
 # skill-issue
 
-nine Claude Code skills I actually use. each one is deliberately small: a router, a handful of opinions, and reference files it loads only when it needs them.
+twelve Claude Code skills I actually use. each one is deliberately small: a router, a handful of opinions, and reference files it loads only when it needs them.
 
 they're written for Claude 5, which mostly means they don't tell Claude how to write code. a skill that enumerates twenty rules teaches the model that rule twenty-one doesn't matter. these encode the judgment calls instead: what to weigh, what the non-obvious failure is, where the boundary with the next skill sits.
 
@@ -14,6 +14,9 @@ they're written for Claude 5, which mostly means they don't tell Claude how to w
 | `/tune` | `/tune [dial]` | move one dimension of something that already exists: bolder, quieter, colorize, distill, typeset, animate, delight, clarify, overdrive |
 | `/check` | `/check [audit\|harden\|normalize\|adapt\|optimize]` | production-readiness on a surface as it stands: score it, harden it against hostile input and i18n, fix design-system drift, adapt it across devices, or chase Core Web Vitals |
 | `/verify` | `/verify` | the done check. greps the diff for shortcuts, runs your test command itself, maps every requirement to the hunk that satisfies it. built to be run by a fresh subagent, because the model that wrote the code is the worst judge of it |
+| `i-have-adhd` | auto | shapes every long reply for ADHD reading: the next action first, numbered steps, state restated so nothing lives only in scrollback |
+| `apple-user-doc-prose` | auto | Apple-style user documentation voice: imperative steps, a 12-point pass/fail rubric, before/after examples |
+| `html-default-style` | auto | house style for self-contained HTML artifacts: no CDNs, light/dark, an anti-AI-slop checklist, a copy-paste starter |
 | `/test` | `/test [eval\|char]` | build the measuring stick first. `eval` for AI behavior (pass@k vs pass^k, judge calibration), `char` to freeze behavior before a refactor |
 | `/research` | `/research [topic]` | fans gatherers out on cheap models, judges once on a strong one, returns a cited memo of validated / adopt now / skip / watchlist, mapped to files in your repo |
 | `/paulgraham` | `/paulgraham [framework]` | stress-test a startup idea before a month goes into it. five frameworks, one verdict: strong, weak, or pivot |
@@ -36,7 +39,9 @@ three things changed in the july 2026 pass:
 
 ## setup
 
-you need [Claude Code](https://claude.ai/code). two steps.
+**the lazy way (recommended):** paste this repo link into Claude Code or Cursor and say *"set this up for me"* — the agent follows [SETUP.md](SETUP.md), an agent-executable playbook covering skills, plugins, design MCPs, and the official Obsidian skills.
+
+**the manual way:** you need [Claude Code](https://claude.ai/code). two steps.
 
 **1. install the superpowers plugin** (this is what makes skills auto-invoke):
 
