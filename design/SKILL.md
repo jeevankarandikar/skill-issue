@@ -14,6 +14,8 @@ Everything design in one skill — UX structure → taste rules → DESIGN.md �
 
 The bans here aren't personal quirks. Anthropic's own frontend-design skill and Vercel's v0 independently ban the same tells — purple/violet gradients and converging on reflex fonts (Inter, Space Grotesk). When justifying or killing a direction, reason from named priors rather than asserting taste: [reference/design-priors.md](reference/design-priors.md).
 
+Every build/polish pass also applies the vendored [reference/interfaces-cheat-sheet.md](reference/interfaces-cheat-sheet.md) (interfaces.dev, Rauno Freiberg) as the mechanical floor — radius concentricity, transition hygiene, focus states, hit areas, copy rules. Cheap to check, expensive to skip.
+
 ---
 
 ## Modes
@@ -135,6 +137,14 @@ Generate brand assets **codegen-first** — deterministic where the asset is str
 
 Do NOT write code during this phase. Understand deeply first so implementation is precise.
 
+### The Design Read
+
+Before the interview, extract what the brief already says: surface kind (form / list / dashboard / settings / onboarding / landing / detail), audience (which picks the aesthetic, not your taste), vibe words the user used, reference URLs or screenshots, existing brand assets, quiet constraints (accessibility-first, regulated industry, kids' product — these OVERRIDE aesthetic preference), and platform signals (`.swift` files vs `package.json`). Then declare it in one line before anything else:
+
+> *"Reading this as: \<surface kind> for \<audience>, with a \<vibe> language, on \<platform>."*
+
+If the read genuinely diverges (Linear-clean vs Awwwards-experimental), ask exactly ONE question. If you can confidently infer, declare and proceed — never open with a multi-question dump.
+
 → *UX laws that should inform the brief — Hick's, Fitts's, Jakob's, Miller's, Peak-End, Von Restorff: [reference/ux-laws.md](reference/ux-laws.md). UX copy — labels, errors, empty states, microcopy: [reference/ux-writing.md](reference/ux-writing.md)*
 
 ### Discovery Interview
@@ -192,11 +202,25 @@ Commit to metric-based rules before writing implementation code.
 
 ### Three Dials
 
-Set at the start of the project. Adapt only when the user explicitly requests it.
+- **DESIGN_VARIANCE** (1 = perfect symmetry → 10 = artsy chaos)
+- **MOTION_INTENSITY** (1 = static → 10 = cinematic physics)
+- **VISUAL_DENSITY** (1 = art gallery airy → 10 = cockpit packed)
 
-- **DESIGN_VARIANCE: 8** (1 = perfect symmetry → 10 = artsy chaos)
-- **MOTION_INTENSITY: 6** (1 = static → 10 = cinematic physics)
-- **VISUAL_DENSITY: 4** (1 = art gallery airy → 10 = cockpit packed)
+Infer the values from the Design Read, state them explicitly with a one-sentence justification, then adapt only when the user asks. Fallback when no row fits: 8 / 6 / 4.
+
+| Signal | VARIANCE | MOTION | DENSITY |
+|---|---|---|---|
+| Apple settings/form/utility screen | 4-5 | 3-4 | 4-6 |
+| Apple consumer flagship (onboarding, hero detail) | 6-7 | 5-7 | 3-4 |
+| Productivity app (lists, sidebars, dashboards) | 4-6 | 3-4 | 5-7 |
+| Public-sector / regulated / accessibility-critical | 3-4 | 2-3 | 4-5 |
+| Marketing landing (SaaS) | 7 | 6 | 4 |
+| Marketing landing (agency / creative) | 9 | 8 | 3 |
+| Editorial / blog | 6 | 4 | 3 |
+| Redesign — preserve | match existing | +1 | match |
+| Redesign — overhaul | +2 | +2 | match |
+
+**Apple platforms cap MOTION at 7** unless the user explicitly asks for cinematic motion — iOS/macOS users come with system motion expectations, and overshooting feels foreign.
 
 **Variance behavior:**
 - 1-3: Flexbox `justify-center`, strict symmetrical grids, equal paddings
@@ -343,11 +367,12 @@ If you showed this to someone and said "AI made this" — would they believe it 
 
 full canonical list: reference/critique.md
 
-### Interactive States (Always Generate All Four)
+### Interactive States (Always Generate All Five)
 
 - **Loading:** Skeletal loaders matching exact layout dimensions. No circular spinners.
 - **Empty:** Composed empty states that teach the interface. Not just "nothing here."
 - **Error:** Clear, inline error reporting.
+- **Partial:** Some data loaded, some failed — the state everyone forgets. Show what arrived, flag what didn't.
 - **Press feedback:** `transform: scale(0.98)` or `translateY(-1px)` on active for any pressable element.
 
 ### Creative Arsenal

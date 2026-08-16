@@ -22,8 +22,34 @@ Cognitive and interaction laws that should inform the Shape phase and the critiq
 | **Law of Similarity** | Similar-looking elements read as related. | Style same-function elements identically (all primary buttons match). |
 | **Postel's Law** | Be liberal in what you accept, conservative in what you send. | Forgiving inputs (accept messy formats, autoformat); precise, predictable output states. |
 | **Prägnanz** | The eye resolves complexity to the simplest form. | Favor simple, regular layouts; cut visual noise. |
+| **Information Scent** (Pirolli) | Every link/button label is a prediction of its destination. | Specific labels ("See pricing", "Start the 14-day trial") over vague ones ("Learn more", "Continue"). |
 
 Secondary (reach for when relevant): Choice Overload, Zeigarnik Effect, Flow, Occam's Razor, Pareto Principle, Law of Uniform Connectedness.
+
+---
+
+## The Disclosure Ladder
+
+Every screen has a primary task, secondary tasks, and edge tasks. Map each to a level (least → most hidden):
+
+| Level | Pattern | When |
+|---|---|---|
+| 0. Always visible | Inline on the canvas | Primary action, current state, key data |
+| 1. One scroll away | Below the fold, same surface | Supporting content, "About" |
+| 2. Inline expand | Accordion, expander, `<details>` | Secondary details, FAQ, advanced settings |
+| 3. Drill-down | Navigation push, detail sheet | Sub-flows that need real estate |
+| 4. Contextual | Hover, right-click, long-press, focus | Power-user actions, secondary modes |
+| 5. Modal | Sheet, alert, dialog | Destructive confirms, focused single-task flows |
+| 6. Discoverable | Keyboard shortcut, command palette, menu | Expert-only operations |
+
+Decision rules:
+- **Primary task always at level 0.** If you have to hunt for it, the design failed.
+- **Modals (level 5) are expensive** — they steal focus and hide context. Prefer inline editing or slide-overs.
+- **Hover-only (level 4) is never the only path.** Right-click and keyboard reach the same actions; touch has no hover.
+- **State, not content, is what you disclose.** The rest waits for the eye.
+- **Onboarding ≠ progressive disclosure.** Onboarding teaches; disclosure surfaces complexity on demand.
+
+Ordering heuristic (Saffer): **Reduce → Group → Hide → Decorate.** Cut what isn't pulling weight, cluster what survived by the Gestalt laws above, push secondary into levels 2-4, and only then add texture or motion. Decorating to compensate for clutter means going back to step 1.
 
 ---
 

@@ -126,6 +126,21 @@ Does this look AI-generated? Be brutally honest. List specific tells:
 - Emojis anywhere in UI
 - `h-screen` instead of `min-h-[100dvh]`
 
+**Marketing-page tells:**
+- Version labels in the hero (`V0.6`, `BETA`, `INVITE-ONLY`) unless the brief is a launch
+- Section-number eyebrows (`00 / INDEX`, `001 · Capabilities`)
+- Decoration text strips at hero bottom (`BRAND. MOTION. SPATIAL.`)
+- Version footers (`v1.4.2`, `Build 0048`) on marketing pages
+- Locale / weather / time strips (`LIS 14:23 · 18°C`) unless a genuinely distributed studio
+- Scroll cues (`↓ Scroll`, `Scroll to explore`)
+- Decorative status dots on every list item, nav entry, or badge
+- `border-t` + `border-b` on every row of long lists / spec tables
+- "Quietly trusted by" / "Quietly in use at"
+- Div-based fake product screenshots in the hero
+- Vertical rotated text (`INDEX OF WORK, 2018-2026`)
+- Pills/labels overlaid on images (`Plate 03 · House archive`); photo-credit captions as decoration
+- Floating top-right sub-text in section headings
+
 Verdict: **AI tells detected / Clean / Mostly clean**
 
 ---

@@ -17,6 +17,22 @@ v4 is CSS-first and OKLCH-native — which validates the color stance in [color-
 - Default palette is OKLCH (wider gamut, perceptually uniform). Define custom tokens the same way: `--color-x: oklch(L C H)`.
 - Setup: `@tailwindcss/postcss` or the Vite plugin. Do NOT use the v3 `tailwindcss` PostCSS plugin on a v4 project.
 
+## When the brief matches an official design system
+
+Reach for the real system instead of imitating its look with Tailwind — one design system and one icon family per project:
+
+| Brief reads as… | Use |
+|---|---|
+| Microsoft / enterprise | `@fluentui/react-components` |
+| Material-flavored | `@material/web` + Material 3 tokens |
+| IBM-style B2B analytics | `@carbon/react` + `@carbon/styles` |
+| Atlassian / Jira-style | `@atlaskit/*` + `@atlaskit/tokens` |
+| GitHub devtool / community | `@primer/css` or `@primer/react-brand` |
+| Public-sector UK | `govuk-frontend` |
+| US public-sector / trust-first | `uswds` |
+| Modern accessible foundation | `@radix-ui/themes` |
+| Modern SaaS, owned components | shadcn/ui |
+
 ## shadcn/ui
 
 The right substrate *if you then make it yours* — shipping raw shadcn defaults is how the monoculture spreads.
