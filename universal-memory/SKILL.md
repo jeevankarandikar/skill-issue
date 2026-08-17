@@ -64,11 +64,12 @@ small. When MEMORY.md starts crowding a page, split it:
 3. Same discipline applies: update the fact file, keep the index line honest,
    delete both when stale.
 
-This keeps the always-loaded cost flat forever. There is a third tier this
-skill deliberately does not fake: memory over your actual life data (messages,
-mail, years of history) needs a real indexed store with search - that is a
-product, not a markdown file. This skill's job ends at "the agent never needs
-re-teaching."
+This keeps the always-loaded cost flat forever. The third tier, when memory
+outgrows loose facts entirely, is the LLM-wiki pattern: a real vault of linked
+plain-text notes (Obsidian or similar) that the agent reads, links, and grows -
+searched on demand, never bulk-loaded. Same law all the way up: plain files you
+own, an index that stays small, bodies fetched when relevant. This skill covers
+the first two tiers; the vault tier is its own setup on the same principles.
 
 ## What does NOT go in memory
 
