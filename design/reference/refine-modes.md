@@ -67,7 +67,7 @@ No arbitrary z-index values. Build a semantic scale:
 
 Full UX review of an existing surface. Score against Nielsen's heuristics. Run automated detection. Produce a severity-ordered issue list.
 
-→ *Full protocol with all heuristics, persona patterns, and cognitive load checklist: [reference/critique.md](reference/critique.md)*
+→ *Full protocol with all heuristics, persona patterns, and cognitive load checklist: [reference/critique.md](critique.md)*
 
 ### Process
 
@@ -156,7 +156,7 @@ default / hover / focus / active / disabled / loading / error / success
 
 Comprehensive upgrade of an existing interface. Fix in priority order for maximum visible impact.
 
-→ *Full audit protocol with detailed checklist: [reference/redesign.md](reference/redesign.md)*
+→ *Full audit protocol with detailed checklist: [reference/redesign.md](redesign.md)*
 
 ### Fix Priority Order
 

@@ -1,6 +1,6 @@
 ---
 name: ios
-description: Swift and Apple-platform work. Use when writing, reviewing, or debugging Swift, SwiftUI, or an Xcode project on iOS, macOS, or watchOS - including @Observable migration, actor-isolation and concurrency errors, type-safe NavigationStack, Dynamic Type, VoiceOver, and HIG review of a screen. The swift-reviewer agent reviews diffs; this skill holds the patterns it cites.
+description: Swift and Apple-platform work. Use when writing, reviewing, or debugging Swift, SwiftUI, or an Xcode project on iOS, macOS, or watchOS - including @Observable migration, actor-isolation and concurrency errors, type-safe NavigationStack, Dynamic Type, VoiceOver, and HIG review of a screen. Diff review belongs to a fresh-context reviewer; this skill holds the patterns it cites.
 version: 2.0.0
 user-invocable: true
 argument-hint: "[review | accessibility | patterns | concurrency]"

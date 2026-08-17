@@ -1,6 +1,6 @@
 ---
 name: universal-memory
-description: Set up and maintain a layered agent memory that survives every session and every project - a SOUL file (how the agent should behave, always), a MEMORY file (durable facts about the user), and per-project CLAUDE.md files (project rules). Use at first setup ("set up my memory", "make claude remember me"), whenever the user gives a correction or preference worth keeping ("remember this", "always do X", "stop doing Y"), and at the end of substantial sessions to bank learnings. The failure this prevents: re-teaching the agent the same things every session.
+description: Set up and maintain a layered agent memory that survives every session and every project - a SOUL file (how the agent should behave, always), a MEMORY file (durable facts about the user), and per-project CLAUDE.md files (project rules). Use at first setup ("set up my memory", "make claude remember me"), whenever the user gives a correction or preference worth keeping ("remember this", "always do X", "stop doing Y"), and at the end of substantial sessions to bank learnings. The failure this prevents - re-teaching the agent the same things every session.
 ---
 
 # universal-memory

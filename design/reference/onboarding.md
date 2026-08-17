@@ -49,7 +49,7 @@ Empty state types:
 
 ## Extract Mode (`/design extract [target]`)
 
-Pull reusable components and tokens into the design system. Follow the [extract flow](reference/extract.md). Pass any additional text as the extraction target.
+Pull reusable components and tokens into the design system. Follow the [extract flow](extract.md). Pass any additional text as the extraction target.
 
 ---
 

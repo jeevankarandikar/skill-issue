@@ -24,8 +24,7 @@ adding an "X -> use Y" line here.
 
 <!-- Strategic Shift block - OPTIONAL. Use when a major repositioning, competitive
 event, or pivot happens. Replace YYYY-MM-DD; cover what changed, new positioning,
-moat thesis, phasing, and links to plan/audit files. Delete when stale. Example
-pattern lives in the PinPal repo CLAUDE.md. -->
+moat thesis, phasing, and links to plan/audit files. Delete when stale. Keep it to a few lines. -->
 <!--
 ## YYYY-MM-DD strategic shift - read first
 [What changed] · [New positioning / moat thesis] · [Phasing] · [Backbone files]

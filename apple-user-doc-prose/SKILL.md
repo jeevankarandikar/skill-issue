@@ -1,6 +1,6 @@
 ---
 name: apple-user-doc-prose
-description: Draft or rewrite user-facing instructions, procedures, runbook steps, and how-to topics so they read like Apple's user documentation: calm, direct, second-person, imperative, plain. Use whenever you are writing or revising task steps, setup guides, or end-user procedures and you want Apple user-guide style.
+description: Draft or rewrite user-facing instructions, procedures, runbook steps, and how-to topics so they read like Apple's user documentation - calm, direct, second-person, imperative, plain. Use whenever you are writing or revising task steps, setup guides, or end-user procedures and you want Apple user-guide style.
 ---
 
 # Apple user-doc prose
