@@ -51,6 +51,25 @@ hand-made memory.md transfers.
   finishing. Working state and one-off details stay out - memory is for what
   the next session needs, not a diary.
 
+## When MEMORY outgrows a page: the index tier
+
+Both files are loaded whole every session - that only works while they stay
+small. When MEMORY.md starts crowding a page, split it:
+
+1. One fact per file in `~/.claude/memory/`, short kebab-case names
+   (`prefers-pnpm.md`, `thesis-deadline.md`), a one-line body each.
+2. MEMORY.md becomes the index: `- [prefers pnpm](memory/prefers-pnpm.md) -
+   one-line hook` per fact. The index stays always-loaded; a fact's body gets
+   read only when its topic comes up.
+3. Same discipline applies: update the fact file, keep the index line honest,
+   delete both when stale.
+
+This keeps the always-loaded cost flat forever. There is a third tier this
+skill deliberately does not fake: memory over your actual life data (messages,
+mail, years of history) needs a real indexed store with search - that is a
+product, not a markdown file. This skill's job ends at "the agent never needs
+re-teaching."
+
 ## What does NOT go in memory
 
 Code structure (the repo shows it), git history, anything derivable by reading
