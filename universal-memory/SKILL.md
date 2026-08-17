@@ -23,8 +23,8 @@ hand-made memory.md transfers.
 
 1. If `~/.claude/SOUL.md` / `~/.claude/MEMORY.md` don't exist, copy them from
    [templates/SOUL.md](templates/SOUL.md) and [templates/MEMORY.md](templates/MEMORY.md).
-2. Ensure `~/.claude/CLAUDE.md` exists and contains both `@` imports (create a
-   minimal one if absent).
+2. Ensure `~/.claude/CLAUDE.md` exists and contains both `@` imports - the
+   repo's `templates/CLAUDE.global.md` is the starter (imports + routing rules).
 3. Interview the human - five questions, one message: what they do, their
    stack/tools, machine, the agent habit that most annoys them, how they like
    answers (terse vs explanatory). Write the answers into MEMORY (facts) and

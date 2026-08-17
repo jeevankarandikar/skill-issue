@@ -1,13 +1,15 @@
 # agent setup playbook
 
-You are an AI agent (Claude Code or Cursor) setting these skills up for your
-human. They pasted this repo link and asked you to set it up. Do the steps in
-order. Everything is idempotent — safe to re-run.
+You are an AI agent (Claude Code, Cursor, or Codex) setting this kit up for
+your human. They pasted the repo link and asked you to set it up. Do the steps
+in order. Everything is idempotent - safe to re-run.
 
 ## 1. detect where you are
 
-- **Claude Code**: skills live in `~/.claude/skills`, plugins exist, proceed with every step.
-- **Cursor**: skills live in `~/.cursor/skills`; SKIP step 3 entirely (plugins are Claude Code only).
+- **Claude Code**: skills in `~/.claude/skills`, plugins exist - every step applies.
+- **Cursor**: skills in `~/.cursor/skills`; skip step 3 (plugins are Claude Code only).
+- **Codex**: no skills dir - merge the skill descriptions into `~/.codex/AGENTS.md`
+  as an index the agent can follow to each SKILL.md; skip steps 3 and 7's hooks.
 
 ## 2. install the skills
 
@@ -15,7 +17,7 @@ order. Everything is idempotent — safe to re-run.
 git clone https://github.com/jeevankarandikar/skill-issue.git ~/Developer/GitHub/skill-issue
 mkdir -p ~/.claude/skills
 for d in ~/Developer/GitHub/skill-issue/*/; do
-  ln -sfn "${d%/}" ~/.claude/skills/"$(basename "$d")"
+  [ -f "$d/SKILL.md" ] && ln -sfn "${d%/}" ~/.claude/skills/"$(basename "$d")"
 done
 ```
 
@@ -85,9 +87,40 @@ gets filed into the right layer automatically. Also correct the common myth:
 context-window overflow is handled by auto-compaction - no hand-made
 memory.md transfers, ever.
 
-## 7. verify, then report
+## 7. guard hooks + the save command (Claude Code only)
 
-1. `ls ~/.claude/skills` (or `~/.cursor/skills`) shows the nine skill dirs (plus obsidian ones if installed).
+Copy, don't symlink (the human may edit their copies):
+
+```bash
+mkdir -p ~/.claude/hooks ~/.claude/commands
+cp ~/Developer/GitHub/skill-issue/hooks/*.py ~/.claude/hooks/
+cp ~/Developer/GitHub/skill-issue/commands/save.md ~/.claude/commands/
+python3 ~/.claude/hooks/bash_guard.py --selftest
+```
+
+Then wire both hooks into `~/.claude/settings.json` (merge, don't clobber):
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [
+      {"matcher": "Bash",
+       "hooks": [{"type": "command", "command": "python3 \"$HOME/.claude/hooks/bash_guard.py\""}]},
+      {"matcher": "Write|Edit|NotebookEdit",
+       "hooks": [{"type": "command", "command": "python3 \"$HOME/.claude/hooks/file_guard.py\""}]}
+    ]
+  }
+}
+```
+
+What they buy: recursive rm outside temp dirs, force push, DROP TABLE,
+hook-bypass flags, and commit trailers all get blocked BEFORE they run;
+writes stay inside the project. `/save` banks a session's learnings into
+changelog/journal/CLAUDE.md with one word.
+
+## 8. verify, then report
+
+1. `ls ~/.claude/skills` (or `~/.cursor/skills`) shows the thirteen skill dirs (plus obsidian ones if installed) - and NOT hooks/commands/templates (those aren't skills).
 2. Ask the human to restart the app, then run `/design` or say "review this file" — the agent should announce the skill it loads.
 3. Report to the human: what you installed, what you skipped and why, and the one-line pitch: *describe the task, the right skill fires on its own.*
 
