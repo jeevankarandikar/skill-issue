@@ -71,7 +71,23 @@ for d in ~/Developer/GitHub/obsidian-skills/skills/*/; do
 done
 ```
 
-## 6. verify, then report
+## 6. memory - explain this to the human
+
+Nothing to install; correct their mental model instead. Claude Code already
+handles the two things people hand-roll:
+
+- **Full context window**: the session auto-compacts - a summary carries the
+  work forward in place. They never need to "make a memory.md and move it to
+  another instance."
+- **Across sessions**: `/init` writes a CLAUDE.md the project loads every
+  session; typing `#` mid-chat appends a remembered fact to it. Newer builds
+  also keep a per-project auto-memory directory that persists on its own.
+
+Tell them: describe durable preferences once ("remember: we use pnpm"), let
+compaction handle long sessions, review CLAUDE.md occasionally like a config
+file.
+
+## 7. verify, then report
 
 1. `ls ~/.claude/skills` (or `~/.cursor/skills`) shows the nine skill dirs (plus obsidian ones if installed).
 2. Ask the human to restart the app, then run `/design` or say "review this file" — the agent should announce the skill it loads.
