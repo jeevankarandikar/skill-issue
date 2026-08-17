@@ -71,21 +71,19 @@ for d in ~/Developer/GitHub/obsidian-skills/skills/*/; do
 done
 ```
 
-## 6. memory - explain this to the human
+## 6. universal memory - set it up
 
-Nothing to install; correct their mental model instead. Claude Code already
-handles the two things people hand-roll:
+Run the `universal-memory` skill's first-time setup (it's in the set you just
+installed - read universal-memory/SKILL.md and follow "First-time setup"):
+copy its templates to `~/.claude/SOUL.md` and `~/.claude/MEMORY.md`, wire the
+`@` imports into `~/.claude/CLAUDE.md`, then interview the human (five
+questions, one message) and seed both files from the answers.
 
-- **Full context window**: the session auto-compacts - a summary carries the
-  work forward in place. They never need to "make a memory.md and move it to
-  another instance."
-- **Across sessions**: `/init` writes a CLAUDE.md the project loads every
-  session; typing `#` mid-chat appends a remembered fact to it. Newer builds
-  also keep a per-project auto-memory directory that persists on its own.
-
-Tell them: describe durable preferences once ("remember: we use pnpm"), let
-compaction handle long sessions, review CLAUDE.md occasionally like a config
-file.
+Result: a behavior layer (SOUL) and a fact layer (MEMORY) load in every
+session of every project, and from now on any correction or "remember this"
+gets filed into the right layer automatically. Also correct the common myth:
+context-window overflow is handled by auto-compaction - no hand-made
+memory.md transfers, ever.
 
 ## 7. verify, then report
 
