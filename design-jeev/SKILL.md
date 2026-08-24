@@ -1,5 +1,5 @@
 ---
-name: design
+name: design-jeev
 description: Design work end to end - UX shape, taste rules, DESIGN.md, production UI code, micro-interaction polish. Use for "design this screen", "build the landing page", "make this look better", "redesign it", "this looks AI-generated", onboarding and first-run flows, brand assets, or exploring visual directions. Owns the canonical motion timings, easing curves, severity levels, and AI-slop tells that other skills reference rather than restate. Start a cold project with `lab`. A single-dimension adjustment to an existing surface goes to tune; a production-readiness pass goes to check.
 version: 4.0.0
 user-invocable: true
@@ -15,6 +15,8 @@ Everything design in one skill — UX structure → taste rules → DESIGN.md �
 The bans here aren't personal quirks. Anthropic's own frontend-design skill and Vercel's v0 independently ban the same tells — purple/violet gradients and converging on reflex fonts (Inter, Space Grotesk). When justifying or killing a direction, reason from named priors rather than asserting taste: [reference/design-priors.md](reference/design-priors.md).
 
 Every build/polish pass also applies the vendored [reference/interfaces-cheat-sheet.md](reference/interfaces-cheat-sheet.md) (interfaces.dev, Rauno Freiberg) as the mechanical floor — radius concentricity, transition hygiene, focus states, hit areas, copy rules. Cheap to check, expensive to skip.
+
+Reference tools, vetted 2026-08: `variate` skill for side-by-side variations of one file on localhost; lazyweb + refero MCPs for real product screens and flows; recent.design for fresh references, og images, and app screenshots; posts.design for launch/announcement post layouts; animos.app for a client-side launch teaser video (exports mp4, nothing uploaded). Skipped on aesthetic mismatch: gradient packs, glossy-3d and webgl generators, hosted embeds (CSP).
 
 ---
 
@@ -104,7 +106,7 @@ Synthesize into `.impeccable.md` at the project root:
 [Who they are, their context, the job to be done]
 
 ### Brand Personality
-[Voice, tone, 3-word personality, emotional goals]
+[Voice, tone, 3-word personality, emotional goals - these steer type, color, motion. Wording follows the voice skill's product copy law: labels are plain nouns, no metaphor.]
 
 ### Aesthetic Direction
 [Visual tone, references, anti-references, theme decision and why]
@@ -250,7 +252,7 @@ Infer the values from the Design Read, state them explicitly with a one-sentence
 
 **Font selection procedure — follow in order on every project:**
 
-Step 1. Write 3 concrete brand voice words — not "modern" or "elegant" (dead categories). Examples: "warm mechanical opinionated", "fast dense unimpressed", "handmade slightly weird".
+Step 1. Write 3 concrete brand voice words — not "modern" or "elegant" (dead categories). Examples: "warm mechanical opinionated", "fast dense unimpressed", "handmade slightly weird". These pick the font, never the copy: a "slightly weird" brand still labels a chart "heart rate", not "the heart's rest".
 
 Step 2. **List the 3 fonts you'd normally reach for, then reject all three.** The
 reflex pick is the problem, not any particular family. Fraunces, Space Grotesk, Inter,
@@ -364,6 +366,7 @@ If you showed this to someone and said "AI made this" — would they believe it 
 - 3-column equal card grids → zig-zag, asymmetric grid, or horizontal scroll
 - Generic names / startup slop names ("John Doe", "Acme", "Nexus") → creative, contextual names
 - AI copy clichés ("Elevate", "Seamless", "Unleash", "Next-Gen") → concrete verbs
+- Figurative labels and headings ("the body ledger", "ink to ember", "person of record") → the plain noun ("your body", "heart rate", "people"). Blurbs that tell the reader how to read a section → delete; the data shows it. Full law + kill list: voice skill, enforced by hooks/copy_guard.py
 
 full canonical list: reference/critique.md
 

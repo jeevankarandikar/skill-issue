@@ -14,7 +14,7 @@ manual: clone it, symlink the skill folders into `~/.claude/skills` (or `~/.curs
 
 | skill | what it does |
 | ----- | ------------ |
-| `design` | the whole design pipeline: shape, taste rules, build, polish. `lab` mode renders directions to react to |
+| `design-jeev` | the whole design pipeline: shape, taste rules, build, polish. `lab` mode renders directions to react to |
 | `tune` | move one dial: bolder, quieter, colorize, distill, animate, clarify |
 | `check` | production-readiness: audit, harden, normalize, adapt, optimize |
 | `verify` | the done check. greps the diff for shortcuts, runs your tests, maps requirements to hunks |
@@ -28,7 +28,7 @@ manual: clone it, symlink the skill folders into `~/.claude/skills` (or `~/.curs
 | `html-default-style` | self-contained HTML house style, no CDN slop |
 | `universal-memory` | the memory layer - see below |
 
-skills fire on intent once superpowers is installed. or invoke by name: `/design`, `/check audit`, `/verify`.
+skills fire on intent once superpowers is installed. or invoke by name: `/design-jeev`, `/check audit`, `/verify`.
 
 ## memory
 
@@ -55,7 +55,7 @@ the description is the router - if a skill isn't firing, fix the description, do
 
 ## why the skills are shaped like this
 
-**progressive disclosure.** `design` used to be 1091 lines that loaded whether you wanted them or not. detail moved behind reference files read on demand.
+**progressive disclosure.** `design-jeev` used to be 1091 lines that loaded whether you wanted them or not. detail moved behind reference files read on demand.
 
 **opinions over rules.** the font section used to ban 23 typefaces. now it says the reflex pick is the problem - shorter, and actually true.
 

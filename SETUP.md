@@ -121,7 +121,7 @@ changelog/journal/CLAUDE.md with one word.
 ## 8. verify, then report
 
 1. `ls ~/.claude/skills` (or `~/.cursor/skills`) shows the thirteen skill dirs (plus obsidian ones if installed) - and NOT hooks/commands/templates (those aren't skills).
-2. Ask the human to restart the app, then run `/design` or say "review this file" — the agent should announce the skill it loads.
+2. Ask the human to restart the app, then run `/design-jeev` or say "review this file" — the agent should announce the skill it loads.
 3. Report to the human: what you installed, what you skipped and why, and the one-line pitch: *describe the task, the right skill fires on its own.*
 
 Things only the human can do: restart the app, approve plugin permission
