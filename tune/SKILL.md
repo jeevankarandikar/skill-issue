@@ -1,6 +1,10 @@
 ---
 name: tune
-description: Move one dimension of a design that already exists. Use when the ask names a single quality rather than a redesign - "make it bolder", "tone it down", "add some color", "strip it back", "the type is a mess", "give it some motion", "make it fun", "this copy is confusing", "push it further". Nine dials, one dimension each. A new surface or a full pipeline goes to design-jeev; a production-readiness pass goes to check.
+description: >-
+  Move one dimension of a design that already exists - nine dials: bolder, quieter, colorize,
+  distill, typeset, animate, delight, clarify, overdrive. Use when the ask names a single
+  quality: "make it bolder", "tone it down", "the type is a mess". A new surface or full
+  pipeline is design-jeev.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[bolder | quieter | colorize | distill | typeset | animate | delight | clarify | overdrive]"

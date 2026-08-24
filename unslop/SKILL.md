@@ -1,6 +1,13 @@
 ---
 name: unslop
-description: Remove AI writing tells from prose without inventing anything. Use when the user says text "sounds like AI", "sounds like ChatGPT", "sounds like an LLM", "sounds robotic", or asks to "make this human", "make it sound less AI", "remove the slop", "deslop this", "unslop this", "humanize this", "de-AI this", or "clean up AI writing". Also use proactively when writing or revising any prose a human will read: docs, READMEs, blog posts, release notes, emails, UI copy, marketing pages, reports, and PR descriptions. Never add a fact, number, benchmark, anecdote, or feature the source does not contain.
+description: >-
+  Remove AI writing tells from prose without inventing anything. Use when the user says text
+  "sounds like AI", "sounds like ChatGPT", "sounds like an LLM", "sounds robotic", or asks to
+  "make this human", "make it sound less AI", "remove the slop", "deslop this", "unslop this",
+  "humanize this", "de-AI this", or "clean up AI writing". Also use proactively when writing or
+  revising any prose a human will read: docs, READMEs, blog posts, release notes, emails, UI
+  copy, marketing pages, reports, and PR descriptions. Never add a fact, number, benchmark,
+  anecdote, or feature the source does not contain.
 ---
 
 # Unslop

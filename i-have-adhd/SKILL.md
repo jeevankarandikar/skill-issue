@@ -1,6 +1,10 @@
 ---
 name: i-have-adhd
-description: Shape output so a reader with ADHD can act on it - the next action first, multi-step work numbered, state restated across turns, tangents deferred rather than inlined, finished work made concrete. Load when a reply would otherwise run long, span several turns, or hand back a plan or a set of steps. Not needed for a short direct answer, which is already the right shape.
+description: >-
+  Shape output so a reader with ADHD can act on it: the next action first, multi-step work
+  numbered, state restated across turns, tangents deferred rather than inlined. Load when a
+  reply would otherwise run long, span several turns, or hand back a plan. A short direct
+  answer already is the shape.
 ---
 
 # i-have-adhd

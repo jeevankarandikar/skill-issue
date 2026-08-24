@@ -1,6 +1,10 @@
 ---
 name: test
-description: Build the measuring stick before the work. Use when the real question is "how will we know this is right" - eval suites for AI or LLM behavior, capability and regression gates, pass@k targets, calibrating an LLM judge; or characterization tests that freeze current behavior before a refactor, rewrite, or framework migration. Runs before implementation, not after. Post-hoc done-checks are the verify skill.
+description: >-
+  Build the measuring stick before the work: eval suites for AI or LLM behavior, regression
+  gates, pass@k targets, calibrating an LLM judge; or characterization tests that freeze
+  behavior before a refactor. Runs before implementation. Post-hoc done-checks are the done-
+  check skill.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[eval | char]"
@@ -130,4 +134,4 @@ read when running this mode.
 Name them so a failure reads as "you changed a behavior," not "a test broke": the
 suite and test names should make the frozen behavior obvious from the failure line
 alone, without opening the file. Tag such edits `CHARACTERIZATION` in the test name or
-a comment so `verify` skips them - that string is a contract between the two skills.
+a comment so `done-check` skips them - that string is a contract between the two skills.

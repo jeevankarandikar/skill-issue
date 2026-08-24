@@ -17,7 +17,7 @@ manual: clone it, symlink the skill folders into `~/.claude/skills` (or `~/.curs
 | `design-jeev` | the whole design pipeline: shape, taste rules, build, polish. `lab` mode renders directions to react to |
 | `tune` | move one dial: bolder, quieter, colorize, distill, animate, clarify |
 | `check` | production-readiness: audit, harden, normalize, adapt, optimize |
-| `verify` | the done check. greps the diff for shortcuts, runs your tests, maps requirements to hunks |
+| `done-check` | the done check. greps the diff for shortcuts, runs your tests, maps requirements to hunks |
 | `test` | build the measuring stick first: evals for AI behavior, characterization before refactors |
 | `research` | cheap gatherers, one strong judge, cited memo mapped to your repo |
 | `paulgraham` | stress-test a startup idea. five frameworks, one verdict |
@@ -36,7 +36,7 @@ manual: clone it, symlink the skill folders into `~/.claude/skills` (or `~/.curs
 | `json-canvas` | .canvas files: nodes, edges, groups (vendored from kepano, MIT) |
 | `last30days` | what people said about a topic in the last 30 days, across reddit, x, youtube, hn (fork of mvanhorn's skill, MIT) |
 
-skills fire on intent once superpowers is installed. or invoke by name: `/design-jeev`, `/check audit`, `/verify`.
+skills fire on intent once superpowers is installed. or invoke by name: `/design-jeev`, `/check audit`, `/done-check`.
 
 ## memory
 

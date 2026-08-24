@@ -1,6 +1,10 @@
 ---
-name: verify
-description: Done check for a code change. Use after implementing, before calling anything done, before commit or ship verification, and as the grader inside an autonomous loop. Greps the diff for shortcuts, runs the project's own test command, and maps each requirement to the hunk that satisfies it - evidence, not assertions. Also owns the pause-and-resume protocol for output that hits the token ceiling, and the definitions of the named failure modes SOUL refers to. Pre-work eval harnesses are the test skill; state-scoped frontend quality is the check skill.
+name: done-check
+description: >-
+  Done check for a code change: greps the diff for shortcuts, runs the project's own test
+  command, and maps each requirement to the hunk that satisfies it - evidence, not assertions.
+  Use after implementing, before commit, and as the grader inside a loop. Pre-work eval design
+  is test.
 version: 1.1.0
 user-invocable: true
 argument-hint: "[goal or diff scope]"

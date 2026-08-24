@@ -1,6 +1,10 @@
 ---
 name: paulgraham
-description: Stress-test a startup idea before a month goes into building it. Use for "is this idea any good", "should we pivot", "who are we actually competing with", "how do we get the first ten users", "what is the smallest thing we can ship" - and for auditing an in-flight product that has not found fit. Five frameworks - pressure-test, validate-problem, map-competition, first-ten, mvp-2-weeks - run one by name or all five in sequence. Ends on a verdict - strong, weak, or pivot. Validation only; it does not build the product or pick a stack.
+description: >-
+  Stress-test a startup idea before a month goes into building it. Five frameworks - pressure-
+  test, validate-problem, map-competition, first-ten, mvp-2-weeks. Use for "is this idea any
+  good", "should we pivot", "who are we competing with". Ends on a verdict: strong, weak, or
+  pivot.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[pressure-test|validate-problem|map-competition|first-ten|mvp-2-weeks|all]"

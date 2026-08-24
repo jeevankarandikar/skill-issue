@@ -1,6 +1,6 @@
 ---
 name: check
-description: Production-readiness pass over a frontend surface as it currently stands. Use for "is this ready to ship", "audit the quality", "harden this", "it breaks on mobile", "make it match the design system", "it's slow", "the bundle is too big", "Core Web Vitals". Five modes - audit (score five dimensions, P0-P3 report), harden (overflow, i18n, error paths, hostile input), normalize (design-system drift), adapt (mobile, tablet, print, email), optimize (performance). Scoped to the state of a surface, not to a diff; diff-versus-goal done-checks are the verify skill.
+description: Production-readiness pass over a frontend surface as it stands - audit, harden, normalize, adapt, optimize. Use for "is this ready to ship", "it breaks on mobile", "it's slow", "the bundle is too big". Scoped to a surface, not a diff; diff-versus-goal checks are done-check.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[audit | harden | normalize | adapt | optimize]"

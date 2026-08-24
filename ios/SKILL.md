@@ -1,6 +1,10 @@
 ---
 name: ios
-description: Swift and Apple-platform work. Use when writing, reviewing, or debugging Swift, SwiftUI, or an Xcode project on iOS, macOS, or watchOS - including @Observable migration, actor-isolation and concurrency errors, type-safe NavigationStack, Dynamic Type, VoiceOver, and HIG review of a screen. Diff review belongs to a fresh-context reviewer; this skill holds the patterns it cites.
+description: >-
+  Swift and Apple-platform work: @Observable migration, actor-isolation and concurrency
+  errors, type-safe NavigationStack, Dynamic Type, VoiceOver, HIG review of a screen. Use when
+  writing, reviewing, or debugging Swift, SwiftUI, or an Xcode project. swift-reviewer reviews
+  diffs; this holds the patterns.
 version: 2.0.0
 user-invocable: true
 argument-hint: "[review | accessibility | patterns | concurrency]"
@@ -22,7 +26,7 @@ All Swift and Apple-platform patterns in one skill. Covers architecture, concurr
 
 ## HIG Review (`/ios review`)
 
-→ *Reference materials: [reference/hig-checklist.md](reference/hig-checklist.md), [reference/font-guidelines.md](reference/font-guidelines.md), [reference/accessibility-quick-ref.md](reference/accessibility-quick-ref.md)*
+→ Reference materials: `reference/hig-checklist.md`, `reference/font-guidelines.md`, `reference/accessibility-quick-ref.md` - read them when running this mode.
 → *Official: [iOS HIG](https://developer.apple.com/design/human-interface-guidelines/designing-for-ios) | [watchOS HIG](https://developer.apple.com/design/human-interface-guidelines/designing-for-watchos)*
 
 ### Review Process
@@ -105,7 +109,7 @@ TESTING — Recommendations
 
 ## Accessibility (`/ios accessibility`)
 
-→ *Reference: [reference/accessibility-patterns.md](reference/accessibility-patterns.md), [reference/accessibility-quick-ref.md](reference/accessibility-quick-ref.md)*
+→ Reference: `reference/accessibility-patterns.md`, `reference/accessibility-quick-ref.md` - read them when running this mode.
 → *Official: [Accessibility in SwiftUI](https://developer.apple.com/documentation/swiftui/accessibility) | [HIG: Accessibility](https://developer.apple.com/design/human-interface-guidelines/accessibility)*
 
 ### Core Patterns

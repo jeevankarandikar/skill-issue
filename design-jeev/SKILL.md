@@ -1,6 +1,10 @@
 ---
 name: design-jeev
-description: Design work end to end - UX shape, taste rules, DESIGN.md, production UI code, micro-interaction polish. Use for "design this screen", "build the landing page", "make this look better", "redesign it", "this looks AI-generated", onboarding and first-run flows, brand assets, or exploring visual directions. Owns the canonical motion timings, easing curves, severity levels, and AI-slop tells that other skills reference rather than restate. Start a cold project with `lab`. A single-dimension adjustment to an existing surface goes to tune; a production-readiness pass goes to check.
+description: >-
+  Design end to end: UX shape, taste rules, DESIGN.md, production UI code, micro-interaction
+  polish. Use for "design this screen", "build the landing page", "make this look better",
+  "this looks AI-generated". Start a cold project with `lab`. One dial on an existing surface
+  is tune.
 version: 4.0.0
 user-invocable: true
 argument-hint: "[surface | lab | assets | full-app | teach | generate-design-md | onboard | extract | arrange | critique | polish | redesign | high-end | brutalist | minimal]"
@@ -13,10 +17,6 @@ Everything design in one skill — UX structure → taste rules → DESIGN.md �
 **New to a project, or no design context yet? Start with `/design lab [surface]`** — it renders a few real directions to react to, needs zero setup, and infers the rest from what you pick.
 
 The bans here aren't personal quirks. Anthropic's own frontend-design skill and Vercel's v0 independently ban the same tells — purple/violet gradients and converging on reflex fonts (Inter, Space Grotesk). When justifying or killing a direction, reason from named priors rather than asserting taste: [reference/design-priors.md](reference/design-priors.md).
-
-Every build/polish pass also applies the vendored [reference/interfaces-cheat-sheet.md](reference/interfaces-cheat-sheet.md) (interfaces.dev, Rauno Freiberg) as the mechanical floor — radius concentricity, transition hygiene, focus states, hit areas, copy rules. Cheap to check, expensive to skip.
-
-Reference tools, vetted 2026-08: `variate` skill for side-by-side variations of one file on localhost; lazyweb + refero MCPs for real product screens and flows; recent.design for fresh references, og images, and app screenshots; posts.design for launch/announcement post layouts; animos.app for a client-side launch teaser video (exports mp4, nothing uploaded). Skipped on aesthetic mismatch: gradient packs, glossy-3d and webgl generators, hosted embeds (CSP).
 
 ---
 
@@ -106,7 +106,7 @@ Synthesize into `.impeccable.md` at the project root:
 [Who they are, their context, the job to be done]
 
 ### Brand Personality
-[Voice, tone, 3-word personality, emotional goals - these steer type, color, motion. Wording follows the voice skill's product copy law: labels are plain nouns, no metaphor.]
+[Voice, tone, 3-word personality, emotional goals]
 
 ### Aesthetic Direction
 [Visual tone, references, anti-references, theme decision and why]
@@ -123,7 +123,7 @@ Ask if they also want this appended to `.github/copilot-instructions.md`.
 
 The visual, low-setup on-ramp — render 2-3 distinct directions, react, refine, lock the winner into DESIGN.md. Built for cold-start (no `.impeccable.md` needed; context comes from what the user reacts to). Routes to the right comparison surface by platform + decision scale: static gallery (broad direction) / live playground (small tweak) / Playwright loop (full build or audit) / Xcode previews (native Apple).
 
-→ *Full protocol — router, the 5 schools, the four anchors, the self-contained `design-lab.html`, the 5-dimension ship rubric: [reference/design-lab.md](reference/design-lab.md)*
+→ Full protocol — router, the 5 schools, the four anchors, the self-contained `design-lab.html`, the 5-dimension ship rubric: `reference/design-lab.md` - read it when running this mode.
 
 ---
 
@@ -131,7 +131,7 @@ The visual, low-setup on-ramp — render 2-3 distinct directions, react, refine,
 
 Generate brand assets **codegen-first** — deterministic where the asset is structural, and **keyless throughout**. OG images (satori), icon sets (Iconify assembly), and favicons (pwa-asset-generator) are free. Logos are too: **SVG authored by the running model** (wordmark/geometric), or — for illustrative marks — a **ready-to-paste image-gen prompt** for whatever image tool the user already has (ChatGPT/Gemini/Midjourney/Recraft). API keys are an opt-in automation, never required. Runnable scripts live in `scripts/assets/`.
 
-→ *Per-asset tooling, the free/gated split, and the scripts: [reference/asset-gen.md](reference/asset-gen.md)*
+→ Per-asset tooling, the free/gated split, and the scripts: `reference/asset-gen.md` - read it when running this mode.
 
 ---
 
@@ -139,15 +139,7 @@ Generate brand assets **codegen-first** — deterministic where the asset is str
 
 Do NOT write code during this phase. Understand deeply first so implementation is precise.
 
-### The Design Read
-
-Before the interview, extract what the brief already says: surface kind (form / list / dashboard / settings / onboarding / landing / detail), audience (which picks the aesthetic, not your taste), vibe words the user used, reference URLs or screenshots, existing brand assets, quiet constraints (accessibility-first, regulated industry, kids' product — these OVERRIDE aesthetic preference), and platform signals (`.swift` files vs `package.json`). Then declare it in one line before anything else:
-
-> *"Reading this as: \<surface kind> for \<audience>, with a \<vibe> language, on \<platform>."*
-
-If the read genuinely diverges (Linear-clean vs Awwwards-experimental), ask exactly ONE question. If you can confidently infer, declare and proceed — never open with a multi-question dump.
-
-→ *UX laws that should inform the brief — Hick's, Fitts's, Jakob's, Miller's, Peak-End, Von Restorff: [reference/ux-laws.md](reference/ux-laws.md). UX copy — labels, errors, empty states, microcopy: [reference/ux-writing.md](reference/ux-writing.md)*
+→ UX laws that should inform the brief — Hick's, Fitts's, Jakob's, Miller's, Peak-End, Von Restorff: `reference/ux-laws.md`. UX copy — labels, errors, empty states, microcopy: `reference/ux-writing.md` - read them when running this mode.
 
 ### Discovery Interview
 
@@ -204,25 +196,11 @@ Commit to metric-based rules before writing implementation code.
 
 ### Three Dials
 
-- **DESIGN_VARIANCE** (1 = perfect symmetry → 10 = artsy chaos)
-- **MOTION_INTENSITY** (1 = static → 10 = cinematic physics)
-- **VISUAL_DENSITY** (1 = art gallery airy → 10 = cockpit packed)
+Set at the start of the project. Adapt only when the user explicitly requests it.
 
-Infer the values from the Design Read, state them explicitly with a one-sentence justification, then adapt only when the user asks. Fallback when no row fits: 8 / 6 / 4.
-
-| Signal | VARIANCE | MOTION | DENSITY |
-|---|---|---|---|
-| Apple settings/form/utility screen | 4-5 | 3-4 | 4-6 |
-| Apple consumer flagship (onboarding, hero detail) | 6-7 | 5-7 | 3-4 |
-| Productivity app (lists, sidebars, dashboards) | 4-6 | 3-4 | 5-7 |
-| Public-sector / regulated / accessibility-critical | 3-4 | 2-3 | 4-5 |
-| Marketing landing (SaaS) | 7 | 6 | 4 |
-| Marketing landing (agency / creative) | 9 | 8 | 3 |
-| Editorial / blog | 6 | 4 | 3 |
-| Redesign — preserve | match existing | +1 | match |
-| Redesign — overhaul | +2 | +2 | match |
-
-**Apple platforms cap MOTION at 7** unless the user explicitly asks for cinematic motion — iOS/macOS users come with system motion expectations, and overshooting feels foreign.
+- **DESIGN_VARIANCE: 8** (1 = perfect symmetry → 10 = artsy chaos)
+- **MOTION_INTENSITY: 6** (1 = static → 10 = cinematic physics)
+- **VISUAL_DENSITY: 4** (1 = art gallery airy → 10 = cockpit packed)
 
 **Variance behavior:**
 - 1-3: Flexbox `justify-center`, strict symmetrical grids, equal paddings
@@ -242,7 +220,7 @@ Infer the values from the Design Read, state them explicitly with a one-sentence
 
 ### Typography
 
-→ *Deep material on OpenType features, web font loading, and scales: [reference/typography.md](reference/typography.md)*
+→ Deep material on OpenType features, web font loading, and scales: `reference/typography.md` - read it when running this mode.
 
 **Always apply these without consulting the reference:**
 - Use a modular type scale with fluid sizing (`clamp()`) for headings on marketing/content pages. Use fixed `rem` scales for app/dashboard UIs.
@@ -252,7 +230,7 @@ Infer the values from the Design Read, state them explicitly with a one-sentence
 
 **Font selection procedure — follow in order on every project:**
 
-Step 1. Write 3 concrete brand voice words — not "modern" or "elegant" (dead categories). Examples: "warm mechanical opinionated", "fast dense unimpressed", "handmade slightly weird". These pick the font, never the copy: a "slightly weird" brand still labels a chart "heart rate", not "the heart's rest".
+Step 1. Write 3 concrete brand voice words — not "modern" or "elegant" (dead categories). Examples: "warm mechanical opinionated", "fast dense unimpressed", "handmade slightly weird".
 
 Step 2. **List the 3 fonts you'd normally reach for, then reject all three.** The
 reflex pick is the problem, not any particular family. Fraunces, Space Grotesk, Inter,
@@ -275,7 +253,7 @@ Step 4. Cross-check: if your pick lines up with your reflex pattern, go back to 
 
 ### Color
 
-→ *Deep material on contrast, accessibility, palette construction: [reference/color-and-contrast.md](reference/color-and-contrast.md)*
+→ Deep material on contrast, accessibility, palette construction: `reference/color-and-contrast.md` - read it when running this mode.
 
 **Always apply these without consulting the reference:**
 - Use **OKLCH**, not HSL. Perceptually uniform — equal lightness steps look equal. As you approach white/black, reduce chroma. Light blue at 85% lightness wants ~0.08 chroma, not 0.15.
@@ -294,7 +272,7 @@ full canonical list: reference/critique.md
 
 ### Layout
 
-→ *Deep material on grids, container queries, optical adjustments: [reference/spatial-design.md](reference/spatial-design.md). Adapting across breakpoints, print, and email: [reference/responsive-design.md](reference/responsive-design.md)*
+→ Deep material on grids, container queries, optical adjustments: `reference/spatial-design.md`. Adapting across breakpoints, print, and email: `reference/responsive-design.md` - read them when running this mode.
 
 **Always apply these without consulting the reference:**
 - CSS Grid over flexbox math. Never `calc()` percentage hacks (`w-[calc(33%-1rem)]`).
@@ -316,7 +294,7 @@ full canonical list: reference/critique.md
 
 ### Architecture (React / Next.js)
 
-→ *Per-stack design-implementation: [reference/stacks/web.md](reference/stacks/web.md) (Tailwind v4, shadcn, Next App Router) and [reference/stacks/swiftui.md](reference/stacks/swiftui.md) (iOS 26 Liquid Glass). Dashboards & charts: [reference/data-viz.md](reference/data-viz.md).*
+→ Per-stack design-implementation: `reference/stacks/web.md` (Tailwind v4, shadcn, Next App Router) and `reference/stacks/swiftui.md` (iOS 26 Liquid Glass). Dashboards & charts: `reference/data-viz.md` - read them when running this mode.
 
 - Verify `package.json` before importing any third-party library. Output install command if missing.
 - Default to Server Components (RSC). Global state works ONLY in Client Components.
@@ -330,7 +308,7 @@ full canonical list: reference/critique.md
 
 ## Phase 4: Build (Production Code)
 
-→ *Build + visual-iteration workflow (load references, build, inspect in a browser, iterate): [reference/craft.md](reference/craft.md)*
+→ Build + visual-iteration workflow (load references, build, inspect in a browser, iterate): `reference/craft.md` - read it when running this mode.
 
 ### Design Direction
 
@@ -366,16 +344,14 @@ If you showed this to someone and said "AI made this" — would they believe it 
 - 3-column equal card grids → zig-zag, asymmetric grid, or horizontal scroll
 - Generic names / startup slop names ("John Doe", "Acme", "Nexus") → creative, contextual names
 - AI copy clichés ("Elevate", "Seamless", "Unleash", "Next-Gen") → concrete verbs
-- Figurative labels and headings ("the body ledger", "ink to ember", "person of record") → the plain noun ("your body", "heart rate", "people"). Blurbs that tell the reader how to read a section → delete; the data shows it. Full law + kill list: voice skill, enforced by hooks/copy_guard.py
 
 full canonical list: reference/critique.md
 
-### Interactive States (Always Generate All Five)
+### Interactive States (Always Generate All Four)
 
 - **Loading:** Skeletal loaders matching exact layout dimensions. No circular spinners.
 - **Empty:** Composed empty states that teach the interface. Not just "nothing here."
 - **Error:** Clear, inline error reporting.
-- **Partial:** Some data loaded, some failed — the state everyone forgets. Show what arrived, flag what didn't.
 - **Press feedback:** `transform: scale(0.98)` or `translateY(-1px)` on active for any pressable element.
 
 ### Creative Arsenal
@@ -400,7 +376,7 @@ Pull from these instead of defaulting to generic patterns. **The patterns aren't
 
 ## Phase 5: Polish (Micro-Interactions)
 
-→ *Deep material on timing, easing, and reduced motion: [reference/motion-design.md](reference/motion-design.md) and [reference/interaction-design.md](reference/interaction-design.md). Accessible component contracts (roles/states/keyboard): [reference/accessible-patterns.md](reference/accessible-patterns.md)*
+→ Deep material on timing, easing, and reduced motion: `reference/motion-design.md` and `reference/interaction-design.md`. Accessible component contracts (roles/states/keyboard): `reference/accessible-patterns.md` - read them when running this mode.
 
 Apply after the build is functionally complete. The last 5% that makes work feel crafted.
 

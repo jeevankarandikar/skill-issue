@@ -102,7 +102,7 @@ Run the tests. Many will fail because you guessed the current behavior wrong.
 
 Add a comment on every CHARACTERIZATION assert explaining WHY the value might look surprising.
 
-This is the ONLY sanctioned case of editing an assertion to match code - tag such edits CHARACTERIZATION in the test name or a comment so /verify skips them.
+This is the ONLY sanctioned case of editing an assertion to match code - tag such edits CHARACTERIZATION in the test name or a comment so /done-check skips them.
 
 #### Phase 5: Verify and Lock
 

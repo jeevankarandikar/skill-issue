@@ -1,6 +1,9 @@
 ---
 name: research
-description: Engineering research that ends in an adoption decision, not a report. Use when the user wants to learn from outside work and act on it - "research X", "state of the art on Y", "best papers or repos for Z", "how does <company> do this", "what should we borrow", "look into these tools", or a pasted list of repos, plugins, or libraries to evaluate. Fans gatherers out on cheap models, judges once on a strong one, lands a cited memo (validated / adopt now / skip / watchlist) mapped to named components of the repo in front of it. Pure fact-finding with no adoption decision is out of scope here.
+description: >-
+  Engineering research that ends in an adoption decision, not a report. Use for "research X",
+  "state of the art on Y", "how does <company> do this", "what should we borrow", or a pasted
+  list of tools to evaluate. Lands a cited memo mapped to this repo: adopt / skip / watchlist.
 version: 1.0.0
 user-invocable: true
 argument-hint: "[topic, question, or a pasted list of things to evaluate]"

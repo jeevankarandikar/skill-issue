@@ -1,6 +1,10 @@
 ---
 name: python
-description: Python conventions for this user's repos - uv-managed projects, the script-oriented layout he actually uses, ruff, and the FastAPI service shape he ships. Use when starting a Python project, when the layout or toolchain is undecided, or when reviewing Python against his conventions rather than against PEP 8 in the abstract. Invoke with `fastapi` for the service patterns - app factory, schemas, DI, async routes, test overrides, security. Generic idiom and style review belongs to a fresh-context reviewer, not here.
+description: >-
+  Python conventions for these repos: uv-managed projects, the script-oriented layout he
+  actually uses, ruff, and his FastAPI service shape (invoke with `fastapi`). Use when
+  starting a Python project or reviewing against his conventions. Generic idiom review is the
+  python-reviewer agent.
 version: 3.0.0
 user-invocable: true
 argument-hint: "[fastapi]"
