@@ -1,6 +1,6 @@
 # skill-issue
 
-the agent setup i actually use: thirteen skills, guard hooks, a save command, and a memory layer that survives every session. works with claude code, cursor, and codex - anything that reads markdown skills.
+the agent setup i actually use: twenty-one skills, guard hooks, a save command, and a memory layer that survives every session. works with claude code, cursor, and codex - anything that reads markdown skills, on hosted or open-source models.
 
 each skill is small on purpose: a router, a few opinions, reference files it loads only when needed. no rule dumps - the model already knows how to code. these encode judgment: what to weigh, where the failure hides, when to stop.
 
@@ -27,6 +27,14 @@ manual: clone it, symlink the skill folders into `~/.claude/skills` (or `~/.curs
 | `apple-user-doc-prose` | user-doc voice: imperative, calm, plain |
 | `html-default-style` | self-contained HTML house style, no CDN slop |
 | `universal-memory` | the memory layer - see below |
+| `unslop` | remove AI writing tells without inventing anything. compiled from a ten-skill bake-off; rule zero is never add a fact the source lacks |
+| `variate` | design variations of one file on your own localhost, flipped with the arrow keys (vendored, MIT) |
+| `defuddle` | clean markdown out of cluttered web pages (vendored from kepano, MIT) |
+| `obsidian-markdown` | obsidian-flavored markdown: wikilinks, callouts, embeds, frontmatter (vendored from kepano, MIT) |
+| `obsidian-bases` | obsidian .base files: views, filters, formulas (vendored from kepano, MIT) |
+| `obsidian-cli` | drive an obsidian vault from the command line (vendored from kepano, MIT) |
+| `json-canvas` | .canvas files: nodes, edges, groups (vendored from kepano, MIT) |
+| `last30days` | what people said about a topic in the last 30 days, across reddit, x, youtube, hn (fork of mvanhorn's skill, MIT) |
 
 skills fire on intent once superpowers is installed. or invoke by name: `/design-jeev`, `/check audit`, `/verify`.
 
