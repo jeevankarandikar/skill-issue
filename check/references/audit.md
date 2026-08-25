@@ -6,7 +6,7 @@ The five-dimension production-readiness score. Read when running this mode.
 
 Run systematic technical quality checks. Document issues — don't fix them. Let other commands address findings.
 
-**Before running**: If no DESIGN.md exists, run `/design generate-design-md` (or `/design teach` first when no `.impeccable.md` exists either).
+**Before running**: If no DESIGN.md exists, run `/design-jeev generate-design-md` (or `/design-jeev teach` first when no `.impeccable.md` exists either).
 
 ### Diagnostic Scan: 5 Dimensions (Score 0-4 each)
 
@@ -62,7 +62,7 @@ Score: 0=Desktop-only (breaks on mobile), 1=Major issues, 2=Partial (works rough
 
 **5. Anti-Patterns (CRITICAL)**
 
-Check against all DON'T guidelines from `/design`. Look for AI slop tells: AI color palette, gradient text, glassmorphism, hero metrics with colored cards, generic fonts, nested cards, gray-on-color, bounce easing, redundant copy.
+Check against all DON'T guidelines from `/design-jeev`. Look for AI slop tells: AI color palette, gradient text, glassmorphism, hero metrics with colored cards, generic fonts, nested cards, gray-on-color, bounce easing, redundant copy.
 
 Score: 0=AI slop gallery (5+ tells), 1=Heavy AI aesthetic (3-4 tells), 2=Some tells (1-2), 3=Mostly clean (subtle), 4=No AI tells (distinctive, intentional)
 
@@ -100,7 +100,7 @@ For each issue: Location (component, file, line) · Category · Impact · Standa
 
 ### Recommended Actions
 
-List in priority order (P0 first). Available commands: `/tune bolder`, `/tune quieter`, `/tune colorize`, `/tune distill`, `/tune typeset`, `/tune animate`, `/tune delight`, `/tune clarify`, `/tune overdrive`, `/check harden`, `/check normalize`, `/check adapt`, `/design`, `/design polish`, `/design critique`. End with `/polish` if any fixes recommended.
+List in priority order (P0 first). Available commands: `/tune bolder`, `/tune quieter`, `/tune colorize`, `/tune distill`, `/tune typeset`, `/tune animate`, `/tune delight`, `/tune clarify`, `/tune overdrive`, `/check harden`, `/check normalize`, `/check adapt`, `/design-jeev`, `/design-jeev polish`, `/design-jeev critique`. End with `/design-jeev polish` if any fixes recommended.
 
 After presenting, tell the user:
 > You can ask me to run these one at a time, all at once, or in any order you prefer.

@@ -2,7 +2,7 @@
 
 Three committed looks. Read the one being asked for; they are alternatives, not a menu to blend.
 
-## High-End Aesthetic (`/design high-end`)
+## High-End Aesthetic (`/design-jeev high-end`)
 
 Vanguard premium UI. When the brief demands museum-grade craft — "Apple Store", "luxury SaaS", "show the care."
 
@@ -87,7 +87,7 @@ Hamburger morphs to X. Menu reveals as staggered mask-clipped items.
 
 ---
 
-## Brutalist Aesthetic (`/design brutalist`)
+## Brutalist Aesthetic (`/design-jeev brutalist`)
 
 Industrial, raw, structural honesty. Functional beauty through material constraint.
 
@@ -176,7 +176,7 @@ Use semantic HTML: `<kbd>`, `<samp>`, `<data>`, `<output>`, `<dl>`/`<dt>`/`<dd>`
 
 ---
 
-## Minimal Aesthetic (`/design minimal`)
+## Minimal Aesthetic (`/design-jeev minimal`)
 
 Editorial minimalism. Restraint as craft. The absence of noise is the design.
 

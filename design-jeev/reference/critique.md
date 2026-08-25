@@ -1,6 +1,6 @@
 # UX Critique Protocol
 
-Full protocol for `/design critique`. Pair with automated scan (`npx impeccable --json` — see Step 3 for the fallback if it fails).
+Full protocol for `/design-jeev critique`. Pair with automated scan (`npx impeccable --json` — see Step 3 for the fallback if it fails).
 
 **Two rules that separate a critique from a complaint:**
 

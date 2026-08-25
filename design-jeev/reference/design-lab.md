@@ -1,4 +1,4 @@
-# Design Lab (`/design lab`)
+# Design Lab (`/design-jeev lab`)
 
 The visual, low-setup on-ramp to the design pipeline. Instead of planning in text and converging on one direction, the lab **renders several distinct directions you can see, react to, and refine** — then locks the winner into DESIGN.md. Built for cold-start: a new project/user with no `.impeccable.md` gets going by reacting to options, not by filling out a context form first.
 

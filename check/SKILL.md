@@ -66,7 +66,7 @@ Each item is pass/fail. Any un-run item goes in the report as "untested"; any fa
 
 Analyze and align the feature to match design system standards, tokens, and patterns.
 
-**Before running**: If no DESIGN.md exists, run `/design generate-design-md` (or `/design teach` first when no `.impeccable.md` exists either).
+**Before running**: If no DESIGN.md exists, run `/design-jeev generate-design-md` (or `/design-jeev teach` first when no `.impeccable.md` exists either).
 
 ### Plan: Understand Before Changing
 

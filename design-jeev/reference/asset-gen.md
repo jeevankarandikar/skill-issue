@@ -1,4 +1,4 @@
-# Asset Generation (`/design assets`)
+# Asset Generation (`/design-jeev assets`)
 
 Generate brand assets — **codegen-first**. Most assets are structural and should be produced *deterministically* (same input → same output), not hallucinated by an image model. Even most logos are code (wordmarks, geometric marks) — author them as SVG with the model already running. For the rare *illustrative* mark, hand the user a tailored prompt for whatever image tool they already use — no key, no integration.
 

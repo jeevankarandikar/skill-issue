@@ -1,6 +1,6 @@
 # Redesign Existing Projects — Full Audit Protocol
 
-Full checklist for `/design redesign`. Apply fixes in priority order from SKILL.md.
+Full checklist for `/design-jeev redesign`. Apply fixes in priority order from SKILL.md.
 
 ---
 

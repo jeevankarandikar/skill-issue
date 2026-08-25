@@ -2,7 +2,7 @@
 
 Read when running the matching mode. Severity levels and the AI-slop tells live in reference/critique.md.
 
-## Arrange (`/design arrange`)
+## Arrange (`/design-jeev arrange`)
 
 Fix layout, spacing, and visual rhythm on an existing surface.
 
@@ -63,7 +63,7 @@ No arbitrary z-index values. Build a semantic scale:
 
 ---
 
-## Critique (`/design critique`)
+## Critique (`/design-jeev critique`)
 
 Full UX review of an existing surface. Score against Nielsen's heuristics. Run automated detection. Produce a severity-ordered issue list.
 
@@ -96,7 +96,7 @@ Anti-patterns verdict â†’ Executive Summary (score + issue count by severity) â†
 
 ---
 
-## Polish (`/design polish`)
+## Polish (`/design-jeev polish`)
 
 Final quality pass before shipping. Apply after the feature is functionally complete.
 
@@ -152,7 +152,7 @@ default / hover / focus / active / disabled / loading / error / success
 
 ---
 
-## Redesign Existing Projects (`/design redesign`)
+## Redesign Existing Projects (`/design-jeev redesign`)
 
 Comprehensive upgrade of an existing interface. Fix in priority order for maximum visible impact.
 

@@ -2,7 +2,7 @@
 
 A worked example, not a form. Sections that carry no decision for this project get deleted rather than filled with `[values]`.
 
-## Phase 3: DESIGN.md (`/design generate-design-md`)
+## Phase 3: DESIGN.md (`/design-jeev generate-design-md`)
 
 Generate `DESIGN.md` at the project root — single source of truth for the design system. AI tools (Google Stitch, Copilot), new contributors, and explicit design decisions all benefit from it.
 

@@ -1,8 +1,8 @@
 # Onboarding and extract modes
 
-Read when running `/design onboard` or `/design extract`.
+Read when running `/design-jeev onboard` or `/design-jeev extract`.
 
-## Onboarding Flows (`/design onboard`)
+## Onboarding Flows (`/design-jeev onboard`)
 
 Run when scope includes first-run, empty states, or activation flows.
 
@@ -47,7 +47,7 @@ Empty state types:
 
 ---
 
-## Extract Mode (`/design extract [target]`)
+## Extract Mode (`/design-jeev extract [target]`)
 
 Pull reusable components and tokens into the design system. Follow the [extract flow](extract.md). Pass any additional text as the extraction target.
 

@@ -14,7 +14,7 @@ argument-hint: "[surface | lab | assets | full-app | teach | generate-design-md 
 
 Everything design in one skill — UX structure → taste rules → DESIGN.md → production code → micro-interaction polish → onboarding flows.
 
-**New to a project, or no design context yet? Start with `/design lab [surface]`** — it renders a few real directions to react to, needs zero setup, and infers the rest from what you pick.
+**New to a project, or no design context yet? Start with `/design-jeev lab [surface]`** — it renders a few real directions to react to, needs zero setup, and infers the rest from what you pick.
 
 The bans here aren't personal quirks. Anthropic's own frontend-design skill and Vercel's v0 independently ban the same tells — purple/violet gradients and converging on reflex fonts (Inter, Space Grotesk). When justifying or killing a direction, reason from named priors rather than asserting taste: [reference/design-priors.md](reference/design-priors.md).
 
@@ -24,22 +24,22 @@ The bans here aren't personal quirks. Anthropic's own frontend-design skill and 
 
 | Invocation | What it does |
 |---|---|
-| `/design [surface]` | Full pipeline for one surface: shape → taste → build → polish |
-| `/design lab [surface]` | Interactive exploration: render 2-3 distinct directions, react and refine, lock the winner — the visual, low-setup on-ramp |
-| `/design assets [icons\|og\|favicon\|logo]` | Generate brand assets — all keyless; OG/icons/favicons by codegen, logos as SVG or a paste-ready image prompt |
-| `/design full-app` | Full pipeline across all surfaces (prompts for surface list) |
-| `/design teach` | Set up design context for the project (writes `.impeccable.md`) |
-| `/design generate-design-md` | Generate or update `DESIGN.md` only |
-| `/design onboard [flow]` | Design onboarding/first-run flows only |
-| `/design extract [target]` | Pull reusable components and tokens into the design system |
-| `/design arrange` | Fix layout, spacing, visual rhythm — squint test, spacing system, grid/flex |
-| `/design critique [target]` | Full UX critique — Nielsen heuristics, automated scan, persona red flags |
-| `/design polish` | Pre-ship final quality pass — all states, typography, copy, edge cases |
-| `/design redesign` | Comprehensive upgrade of existing project — audit + fix priority sequence |
-| `/design high-end` | Vanguard UI aesthetic — double-bezel, variance engine, spring physics |
-| `/design brutalist` | Industrial/terminal aesthetic — Swiss print or CRT mode, hazard red only |
-| `/design minimal` | Editorial minimalist — warm monochrome, washed pastels, invisible motion |
-| `/design` | Ask what to design — for a new surface, point them to `lab` |
+| `/design-jeev [surface]` | Full pipeline for one surface: shape → taste → build → polish |
+| `/design-jeev lab [surface]` | Interactive exploration: render 2-3 distinct directions, react and refine, lock the winner — the visual, low-setup on-ramp |
+| `/design-jeev assets [icons\|og\|favicon\|logo]` | Generate brand assets — all keyless; OG/icons/favicons by codegen, logos as SVG or a paste-ready image prompt |
+| `/design-jeev full-app` | Full pipeline across all surfaces (prompts for surface list) |
+| `/design-jeev teach` | Set up design context for the project (writes `.impeccable.md`) |
+| `/design-jeev generate-design-md` | Generate or update `DESIGN.md` only |
+| `/design-jeev onboard [flow]` | Design onboarding/first-run flows only |
+| `/design-jeev extract [target]` | Pull reusable components and tokens into the design system |
+| `/design-jeev arrange` | Fix layout, spacing, visual rhythm — squint test, spacing system, grid/flex |
+| `/design-jeev critique [target]` | Full UX critique — Nielsen heuristics, automated scan, persona red flags |
+| `/design-jeev polish` | Pre-ship final quality pass — all states, typography, copy, edge cases |
+| `/design-jeev redesign` | Comprehensive upgrade of existing project — audit + fix priority sequence |
+| `/design-jeev high-end` | Vanguard UI aesthetic — double-bezel, variance engine, spring physics |
+| `/design-jeev brutalist` | Industrial/terminal aesthetic — Swiss print or CRT mode, hazard red only |
+| `/design-jeev minimal` | Editorial minimalist — warm monochrome, washed pastels, invisible motion |
+| `/design-jeev` | Ask what to design — for a new surface, point them to `lab` |
 
 ---
 
@@ -55,13 +55,15 @@ Design work produces generic output without project context. You MUST have confi
 **Gathering order:**
 1. Check loaded instructions for a `## Design Context` section — if present, proceed.
 2. Check `.impeccable.md` in the project root — if it exists with required context, proceed.
-3. If neither: run teach mode — **or `/design lab`** ([reference/design-lab.md](reference/design-lab.md)), which proposes directions with minimal setup and infers context from what the user reacts to (the low-friction on-ramp for new projects and users). Either way, do NOT silently infer context from code — code shows what was built, not who it's for.
+3. If neither: run teach mode — **or `/design-jeev lab`** ([reference/design-lab.md](reference/design-lab.md)), which proposes directions with minimal setup and infers context from what the user reacts to (the low-friction on-ramp for new projects and users). Either way, do NOT silently infer context from code — code shows what was built, not who it's for.
 
 **Once the product's vertical is known** (fintech, dev tool, healthcare, e-commerce, AI product, B2B SaaS, consumer/social…), consult [reference/industry-context.md](reference/industry-context.md) for its constraints, anti-patterns, mood, and the tensions to decide deliberately — then fetch live execution references via the lazyweb/refero MCPs. It's vertical-aware fuel: what the category demands and why, without prescribing a look.
 
 ---
 
-## Teach Mode (`/design teach`)
+Every build/polish pass also applies the vendored [reference/interfaces-cheat-sheet.md](reference/interfaces-cheat-sheet.md) (interfaces.dev, Rauno Freiberg) as the mechanical floor — radius concentricity, transition hygiene, focus states, hit areas, copy rules. Cheap to check, expensive to skip.
+
+## Teach Mode (`/design-jeev teach`)
 
 One-time setup per project. Establishes design context.
 
@@ -119,7 +121,7 @@ Ask if they also want this appended to `.github/copilot-instructions.md`.
 
 ---
 
-## Lab Mode (`/design lab`)
+## Lab Mode (`/design-jeev lab`)
 
 The visual, low-setup on-ramp — render 2-3 distinct directions, react, refine, lock the winner into DESIGN.md. Built for cold-start (no `.impeccable.md` needed; context comes from what the user reacts to). Routes to the right comparison surface by platform + decision scale: static gallery (broad direction) / live playground (small tweak) / Playwright loop (full build or audit) / Xcode previews (native Apple).
 
@@ -127,7 +129,7 @@ The visual, low-setup on-ramp — render 2-3 distinct directions, react, refine,
 
 ---
 
-## Assets Mode (`/design assets`)
+## Assets Mode (`/design-jeev assets`)
 
 Generate brand assets **codegen-first** — deterministic where the asset is structural, and **keyless throughout**. OG images (satori), icon sets (Iconify assembly), and favicons (pwa-asset-generator) are free. Logos are too: **SVG authored by the running model** (wordmark/geometric), or — for illustrative marks — a **ready-to-paste image-gen prompt** for whatever image tool the user already has (ChatGPT/Gemini/Midjourney/Recraft). API keys are an opt-in automation, never required. Runnable scripts live in `scripts/assets/`.
 
@@ -140,6 +142,16 @@ Generate brand assets **codegen-first** — deterministic where the asset is str
 Do NOT write code during this phase. Understand deeply first so implementation is precise.
 
 → UX laws that should inform the brief — Hick's, Fitts's, Jakob's, Miller's, Peak-End, Von Restorff: `reference/ux-laws.md`. UX copy — labels, errors, empty states, microcopy: `reference/ux-writing.md` - read them when running this mode.
+
+### The Design Read
+
+Before the interview, extract what the brief already says: surface kind (form / list / dashboard / settings / onboarding / landing / detail), audience (which picks the aesthetic, not your taste), vibe words the user used, reference URLs or screenshots, existing brand assets, quiet constraints (accessibility-first, regulated industry, kids' product — these OVERRIDE aesthetic preference), and platform signals (`.swift` files vs `package.json`). Then declare it in one line before anything else:
+
+> *"Reading this as: \<surface kind> for \<audience>, with a \<vibe> language, on \<platform>."*
+
+If the read genuinely diverges (Linear-clean vs Awwwards-experimental), ask exactly ONE question. If you can confidently infer, declare and proceed — never open with a multi-question dump.
+
+→ *UX laws that should inform the brief — Hick's, Fitts's, Jakob's, Miller's, Peak-End, Von Restorff: [reference/ux-laws.md](reference/ux-laws.md). UX copy — labels, errors, empty states, microcopy: [reference/ux-writing.md](reference/ux-writing.md)*
 
 ### Discovery Interview
 
@@ -546,12 +558,12 @@ mode needs, not all of them.
 
 | Mode / need | File |
 |---|---|
-| `/design high-end`, `brutalist`, `minimal` | reference/aesthetics.md |
-| `/design onboard`, `/design extract` | reference/onboarding.md |
-| `/design arrange`, `critique`, `polish`, `redesign` | reference/refine-modes.md |
-| `/design generate-design-md` | reference/design-md-template.md |
-| `/design lab` | reference/design-lab.md |
-| `/design assets` | reference/asset-gen.md |
+| `/design-jeev high-end`, `brutalist`, `minimal` | reference/aesthetics.md |
+| `/design-jeev onboard`, `/design-jeev extract` | reference/onboarding.md |
+| `/design-jeev arrange`, `critique`, `polish`, `redesign` | reference/refine-modes.md |
+| `/design-jeev generate-design-md` | reference/design-md-template.md |
+| `/design-jeev lab` | reference/design-lab.md |
+| `/design-jeev assets` | reference/asset-gen.md |
 | Any transition, duration, easing, stagger | reference/motion-design.md |
 | Severity levels, AI-slop tells, the font monoculture list | reference/critique.md |
 | The vertical's constraints and mood | reference/industry-context.md |
