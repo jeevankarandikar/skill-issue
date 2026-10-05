@@ -1,0 +1,6 @@
+{
+  "name": "fleet-gauge",
+  "version": "0.1.0",
+  "description": "Weekly cap, context fill and each subagent's call count above the prompt, with a warning when an agent runs long.",
+  "types": "./types/index.d.ts"
+}
