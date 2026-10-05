@@ -1,0 +1,70 @@
+{
+  "skill_name": "design-jeev",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "I want a new look for the settings screen of this SwiftUI app. Show me some options.",
+      "expected_output": "the explore stage, in the project's stack or on a design canvas, ending with the choice recorded",
+      "files": [],
+      "assertions": [
+        "reads DESIGN.md or drafts one before proposing anything",
+        "offers at least two alternatives that differ in structure or hierarchy",
+        "uses a design canvas if the session has one, otherwise SwiftUI previews",
+        "does not introduce a web view or a second UI framework",
+        "writes the chosen direction and the rejected one into DESIGN.md"
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "The sidebar labels get cut off in this React app. Fix it.",
+      "expected_output": "a focused fix in the existing styling system, checked at several widths",
+      "files": [],
+      "assertions": [
+        "changes only the truncation behavior",
+        "uses the project's existing tokens and styling system",
+        "renders the sidebar and checks it at a narrow and a wide width",
+        "reports which sizes and states were checked",
+        "calls anything it did not render untested"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We're starting a small internal admin tool for five people. What should the front end be?",
+      "expected_output": "a choice by use case from the choosing reference, with the reason",
+      "files": [],
+      "assertions": [
+        "asks or states who maintains it and what they already know",
+        "recommends the fastest stack the team can maintain with a component kit near its defaults",
+        "says where the look comes from and that DESIGN.md should record it",
+        "does not recommend a stack only because it is popular",
+        "checks current documentation before naming a library version"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Review the onboarding flow of this Flutter app before we release.",
+      "expected_output": "a pass or fail review of the rendered flow with ranked findings",
+      "files": [],
+      "assertions": [
+        "runs the flow and looks at it, on a phone size and a larger size",
+        "checks the largest text scale, dark appearance and reduced motion",
+        "reports findings as P0, P1 or P2 with a location and a change for each",
+        "reports numbered open items from DESIGN.md without changing them",
+        "does not edit code during the review"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Add a retry button to the failed-upload row in this Compose screen.",
+      "expected_output": "the ship stage for a small change that a person will see",
+      "files": [],
+      "assertions": [
+        "uses the theme's colors, typography and shapes with no literal values",
+        "gives the button a content description and a 48 dp target",
+        "keeps one prominent action in the view",
+        "checks the row in its loading, error and long-text states",
+        "lists the surfaces and states checked"
+      ]
+    }
+  ]
+}
