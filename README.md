@@ -1,18 +1,18 @@
 # skill-issue
 
-The public half of my agent harness: one design skill, one writing guard and one Claude Code mod. I used to keep 25 skills here. Most of them repeated what the models already do, so they are gone.
+This is the public half of my agent harness. It holds a design skill, a writing guard and a usage gauge. I used to keep 25 skills here. Most of them repeated what the models already do, so they are gone.
 
 ## design-jeev
 
-A design skill for Claude Code, Cursor and Codex that works in whatever stack the project already uses: web, SwiftUI, AppKit, UIKit, Compose, Flutter, React Native or a terminal UI.
+`design-jeev` is a design skill for Claude Code, Cursor and Codex. It works in whatever stack the project already uses: web, SwiftUI, AppKit, UIKit, Compose, Flutter, React Native or a terminal UI.
 
 It runs interface work in stages, and each stage hands a written result to the next through a `DESIGN.md` file in your repository.
 
 | Stage | Ask for it like this | What you get |
 | --- | --- | --- |
-| Explore | "explore a direction for the settings screen" | Real alternatives on a design canvas such as Claude Design, or two rendered in your own stack. The chosen direction is written into `DESIGN.md`. |
-| Ship | "build it", "polish the sidebar" | The change in your real code, from your tokens, rendered and inspected at the sizes and states that matter. |
-| Review | "review this before release" | Findings ranked P0 to P2 from a pass or fail checklist, run by a fresh agent on the rendered interface. |
+| Explore | "explore a direction for the settings screen" | The skill draws several directions on a design canvas such as Claude Design, or builds two in your own stack, and writes the one you choose into `DESIGN.md`. |
+| Ship | "build it", "polish the sidebar" | The skill makes the change in your code with your tokens, renders it, and looks at every screen size and control state the change touches. |
+| Review | "review this before release" | A fresh agent runs a pass or fail checklist on the rendered interface and ranks what it finds from P0 to P2. |
 
 When a project has no interface yet, the skill picks an approach by use case before writing anything. The table it uses is in [choosing.md](design-jeev/references/choosing.md).
 
@@ -35,12 +35,12 @@ It works beside a company or brand design skill and defers to it on brand.
 
 ## writing-guard
 
-A Claude Code hook that refuses machine-sounding prose. It blocks em dashes, middle-dot separators, a list of filler phrases and stock words, and clauses set against each other for effect, in prose files as they are written and in chat replies before they are sent. The model gets the offending snippet back and rewrites. It also reads the full rules in [RULES.md](writing-guard/RULES.md) to the model at the start of each session. Install is one command, and the hook is one Python file with no dependencies. Details are in [its README](writing-guard/README.md).
+`writing-guard` is a hook for Claude Code, Cursor and Codex that refuses machine-sounding prose. It blocks em dashes, middle-dot separators, a list of filler phrases and stock words, and clauses set against each other for effect, in prose files as they are written and in chat replies before they are sent. The model gets the offending snippet back and rewrites. It also reads the full rules in [RULES.md](writing-guard/RULES.md) to the model at the start of each session. Install is one command, and the hook is one Python file with no dependencies. Details are in [its README](writing-guard/README.md).
 
 ## fleet-gauge
 
-A Claude Code mod that stays quiet until usage matters. It adds a row above the prompt once the weekly limit reaches 50%, the five-hour limit reaches 70%, the context reaches 200k tokens, or a subagent is running. A toast fires when a subagent reaches 150 tool calls. `/fleet` prints the same numbers on demand. Details are in [its README](fleet-gauge/README.md).
+`fleet-gauge` is a Claude Code mod that stays quiet until usage matters. It adds a row above the prompt once the weekly limit reaches 50%, the five-hour limit reaches 70%, the context reaches 200k tokens, or a subagent is running. A toast fires when a subagent reaches 150 tool calls. `/fleet` prints the same numbers on demand. Cursor and Codex get a smaller version: a hook that tells the agent to hand off after 150 tool calls, and on Codex a status line with the limits. Details are in [its README](fleet-gauge/README.md).
 
 ## Install
 
-See [SETUP.md](SETUP.md). To update later, run `git pull` in the clone and restart the agent.
+Clone the repository and run `python3 install.py`. It sets up the design skill and the writing guard for whichever of Claude Code, Cursor and Codex you have. [SETUP.md](SETUP.md) has the details and the fleet-gauge step. To update later, run `git pull` in the clone and restart the agent.

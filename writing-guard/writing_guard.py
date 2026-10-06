@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Writing guard for Claude Code: blocks the checkable half of RULES.md.
+"""Writing guard for Claude Code, Cursor and Codex: blocks the checkable half of RULES.md.
 
 One script, three hook events. On SessionStart it prints the rules in RULES.md,
 which Claude Code adds to the session's context, so nobody has to paste them
@@ -7,6 +7,10 @@ anywhere. On PreToolUse for Write, Edit and NotebookEdit it reads the text about
 to land in a prose file. On Stop it reads the reply about to be sent. Exit 2
 blocks and hands the offending snippet back to the model; exit 0 allows. A
 malformed event allows, so a broken hook never stops work.
+
+Claude Code is the default. `--codex` reads Codex's apply_patch and its Stop
+event, and `--cursor` speaks Cursor's hook protocol: JSON answers, a follow-up
+message in place of a blocked stop. install.py sets the flag for each agent.
 
 Paths that must quote what the rules ban are skipped: this folder, and any path
 containing a fragment listed in WRITING_GUARD_EXEMPT (colon-separated).
@@ -17,6 +21,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROSE_EXT = (".md", ".mdx", ".txt", ".html", ".htm", ".rst")
@@ -127,7 +132,7 @@ def last_reply(transcript_path: str) -> str:
                 d = json.loads(raw)
             except ValueError:
                 continue
-            kind = d.get("type")
+            kind = d.get("type") or d.get("role")  # Cursor names the speaker under role
             content = (d.get("message") or {}).get("content")
             if kind == "user":
                 typed = isinstance(content, str) or (
@@ -149,6 +154,50 @@ def reply_hit(text: str):
     return hit(text, checks=CHECKS + ((CHAT_ONLY, "banned word"),))
 
 
+def patch_files(patch: str):
+    """(path, added text, removed text) for each file a Codex apply_patch writes."""
+    files, cur = [], None
+    for line in patch.splitlines():
+        m = re.match(r"\*\*\* (?:Add|Update) File: (.+)", line)
+        if m:
+            cur = [m.group(1).strip(), [], []]
+            files.append(cur)
+        elif line.startswith("*** Delete File"):
+            cur = None
+        elif cur is None or line.startswith("*** "):
+            continue
+        elif line.startswith("+"):
+            cur[1].append(line[1:])
+        elif line.startswith("-"):
+            cur[2].append(line[1:])
+    return [(path, "\n".join(added), "\n".join(removed)) for path, added, removed in files]
+
+
+def tool_verdict(tool_input: dict, cwd: str = ""):
+    """return (exit_code, message) for a file-writing tool call from any of the agents."""
+    command = tool_input.get("command")
+    if isinstance(command, str) and "*** Begin Patch" in command:
+        writes = patch_files(command)
+    else:
+        path = (tool_input.get("file_path") or tool_input.get("path")
+                or tool_input.get("notebook_path") or tool_input.get("target_file") or "")
+        text = tool_input.get("content") or tool_input.get("contents") or tool_input.get("new_string") or ""
+        writes = [(path, text, tool_input.get("old_string") or "")]
+    for path, text, old in writes:
+        if isinstance(path, str) and path and not os.path.isabs(path):
+            path = os.path.join(cwd or os.getcwd(), path)
+        code, message = file_verdict(path, text, old)
+        if code:
+            return code, message
+    return 0, ""
+
+
+def stash(event: dict) -> str:
+    """where a Cursor reply waits between afterAgentResponse and stop."""
+    key = re.sub(r"\W", "", str(event.get("conversation_id") or "session"))
+    return os.path.join(tempfile.gettempdir(), f"writing-guard-{key}.txt")
+
+
 def rules() -> str:
     """the rules list from RULES.md, up to the notes about this guard."""
     try:
@@ -164,7 +213,6 @@ def rules() -> str:
 
 
 def _selftest() -> None:
-    import tempfile
     assert rules().count("\n- ") >= 10 and "## " not in rules()
     block = [
         "Size is the goal. Strength is the byproduct.",
@@ -203,6 +251,17 @@ def _selftest() -> None:
     assert file_verdict("/x/INDEX.md", row + " — squat 225", row)[0] == 2
     assert file_verdict("/x/INDEX.md", row + ", leverage", row)[0] == 2
     assert file_verdict("/x/INDEX.md", row)[0] == 2  # a Write has no old text
+    # Cursor's StrReplace and Codex's apply_patch carry the same text in other shapes
+    assert tool_verdict({"path": "a.md", "old_string": "x", "new_string": "We leverage it."}, "/x")[0] == 2
+    assert tool_verdict({"file_path": "/x/a.md", "content": "Bench went to 180."})[0] == 0
+    patch = ("*** Begin Patch\n*** Update File: src/app.py\n@@\n+x = 1  # leverage\n"
+             "*** Add File: docs/a.md\n+Bench went to 180.\n{}*** End Patch")
+    assert tool_verdict({"command": patch.format("")}, "/x")[0] == 0
+    assert tool_verdict({"command": patch.format("+Not a plateau, a reset.\n")}, "/x")[0] == 2
+    moved = "*** Begin Patch\n*** Update File: a.md\n@@\n-old — line\n+new — line\n*** End Patch"
+    assert tool_verdict({"command": moved}, "/x")[0] == 0
+    assert tool_verdict({"command": moved + "\n*** Add File: b.md\n+one — two\n"}, "/x")[0] == 2
+    assert tool_verdict({"command": "ls -la"})[0] == 0
     # replies
     assert reply_hit("This lets you navigate the landscape.")
     assert not reply_hit("The rule bans \"it's worth noting\" and `leverage`.")
@@ -214,7 +273,7 @@ def _selftest() -> None:
         {"type": "assistant", "message": {"content": [{"type": "tool_use", "name": "Bash"}]}},
         {"type": "user", "message": {"content": [{"type": "tool_result", "content": "leverage"}]}},
         {"type": "assistant", "message": {"content": [{"type": "text", "text": "First."}]}},
-        {"type": "assistant", "message": {"content": [{"type": "text", "text": "Second."}]}},
+        {"role": "assistant", "message": {"content": [{"type": "text", "text": "Second."}]}},
     ]
     with tempfile.NamedTemporaryFile("w", suffix=".jsonl", delete=False) as f:
         f.write("\n".join(json.dumps(r) for r in rows) + "\n")
@@ -229,33 +288,56 @@ def main() -> None:
     if "--selftest" in sys.argv:
         _selftest()
         return
+    cursor = "--cursor" in sys.argv
     try:
         event = json.load(sys.stdin)
     except Exception:
         sys.exit(0)  # malformed event, fail open rather than block everything
     if not isinstance(event, dict):
         sys.exit(0)
-    if event.get("hook_event_name") == "SessionStart":
-        print(rules())
+    # Cursor also runs hooks it imports from Claude Code's settings. That copy
+    # defers to the one installed for Cursor.
+    if "cursor_version" in event and not cursor:
         sys.exit(0)
+    name = str(event.get("hook_event_name") or "").lower()
     tool_input = event.get("tool_input")
-    if isinstance(tool_input, dict):
-        path = tool_input.get("file_path") or tool_input.get("notebook_path") or ""
-        if path and not os.path.isabs(path):
-            path = os.path.join(event.get("cwd") or os.getcwd(), path)
-        text = tool_input.get("content") or tool_input.get("new_string") or ""
-        code, message = file_verdict(path, text, tool_input.get("old_string") or "")
+    if name == "sessionstart":
+        print(json.dumps({"additional_context": rules()}) if cursor else rules())
+    elif name == "afteragentresponse":
+        with open(stash(event), "w", encoding="utf-8") as f:
+            f.write(str(event.get("text") or ""))
+    elif isinstance(tool_input, dict):
+        code, message = tool_verdict(tool_input, event.get("cwd") or "")
+        if code:
+            print(message, file=sys.stderr)
+            sys.exit(2)
+    elif cursor:
+        # Cursor cannot refuse a stop. A follow-up message asks for the rewrite,
+        # once: loop_count is above zero on the turn the follow-up started.
+        try:
+            with open(stash(event), encoding="utf-8") as f:
+                text = f.read()
+            os.unlink(stash(event))
+        except OSError:
+            text = last_reply(event.get("transcript_path") or "")
+        found = None if event.get("loop_count") else reply_hit(text)
+        if found:
+            print(json.dumps({"followup_message": MSG.format(what=found[0], snippet=found[1])
+                              + " Rewrite your last reply without it."}))
     else:
         # Stop. stop_hook_active is set on the retry, so a reply that has to quote
         # a banned phrase goes through on the second pass instead of looping.
         if event.get("stop_hook_active"):
             sys.exit(0)
-        found = reply_hit(last_reply(event.get("transcript_path") or ""))
-        code, message = (2, MSG.format(what=found[0], snippet=found[1])
-                         + " Rewrite the reply without it, then stop.") if found else (0, "")
-    if code == 2:
-        print(message, file=sys.stderr)
-    sys.exit(code)
+        text = event.get("last_assistant_message")  # Codex hands the reply over directly
+        if not isinstance(text, str) or not text:
+            text = last_reply(event.get("transcript_path") or "")
+        found = reply_hit(text)
+        if found:
+            print(MSG.format(what=found[0], snippet=found[1])
+                  + " Rewrite the reply without it, then stop.", file=sys.stderr)
+            sys.exit(2)
+    sys.exit(0)
 
 
 if __name__ == "__main__":

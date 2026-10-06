@@ -1,10 +1,22 @@
 # Install
 
-Clone the repository once. Every install below points at the clone, so `git pull` updates them.
+Clone the repository, then run the installer:
 
 ```bash
 git clone https://github.com/jeevankarandikar/skill-issue.git ~/Developer/GitHub/skill-issue
 ```
+
+```bash
+python3 ~/Developer/GitHub/skill-issue/install.py
+```
+
+It finds which of Claude Code, Cursor and Codex you have, links the design skill into each and wires the writing guard into each one's hooks. Start a new session in each agent afterwards.
+
+Codex skips a new or changed hook until you trust it, and it does so without a warning. Open Codex, type `/hooks`, and press `t` to trust the ones listed. Until then the hooks are installed and do nothing there.
+
+Everything points at the clone, so `git pull` updates it, and `install.py --remove` takes it out.
+
+It also sets up the usage gauge for Cursor and Codex. The Claude Code gauge is a mod with its own step at the end of this page. The sections below do each part by hand.
 
 ## The design skill
 
@@ -49,25 +61,21 @@ A brand design skill stays where it is. `design-jeev` loads it alongside itself 
 
 ## The writing guard
 
-Claude Code only. Run the installer once:
+Works in Claude Code, Cursor and Codex. To install it alone:
 
 ```bash
 python3 ~/Developer/GitHub/skill-issue/writing-guard/install.py
 ```
 
-It adds the guard to the `hooks` block of `~/.claude/settings.json`, keeps every other entry, and saves a copy of the file beside it the first time. Start a new session. The guard gives the model the rules at the start of each session, so there is nothing to paste.
+It adds the guard to `~/.claude/settings.json`, `~/.cursor/hooks.json` and `~/.codex/hooks.json`, whichever exist, keeps every other entry, and saves a copy of each file beside it the first time. The guard gives the model the rules at the start of each session, so there is nothing to paste.
 
-If an older writing hook is already wired in that file, remove its entry, since both would block the same text with different messages.
+In Codex, trust the new hooks with `/hooks` as described at the top of this page.
 
-To take the guard out:
-
-```bash
-python3 ~/Developer/GitHub/skill-issue/writing-guard/install.py --remove
-```
+If an older writing hook is already wired in one of those files, remove its entry, since both would block the same text with different messages.
 
 ## The fleet-gauge mod
 
-Claude Code only. Load it for one session:
+In Claude Code it is a mod. Load it for one session:
 
 ```bash
 claude --plugin-dir ~/Developer/GitHub/skill-issue/fleet-gauge
@@ -77,4 +85,10 @@ To load it every time, add this to the `env` block of `~/.claude/settings.json`:
 
 ```json
 "CLAUDE_CODE_PLUGIN_DIRS": "~/Developer/GitHub/skill-issue/fleet-gauge"
+```
+
+For Cursor and Codex alone:
+
+```bash
+python3 ~/Developer/GitHub/skill-issue/fleet-gauge/other-agents/install.py
 ```
