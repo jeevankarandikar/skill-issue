@@ -1,6 +1,6 @@
 # Writing
 
-Paste this section into `~/.claude/CLAUDE.md`, or a project's `CLAUDE.md`, so the model writes to the rules before the guard has to block anything. It applies to every surface: chat, pages, UI copy, commit messages and docs.
+The guard reads this list to the model at the start of every session, so it writes to the rules before anything has to be blocked. They apply to every surface: chat, pages, UI copy, commit messages and docs. Edit the list to change what the model is told.
 
 - No antithesis in parallel clauses: "X is the goal. Y is the byproduct.", "Not a plateau, a reset.", "It's not the number, it's the pattern.", "Show, don't tell." Say the one thing as a plain sentence.
 - No triplets. Lists and adjective runs come in twos, fours, or however many there really are. No "Faster. Cleaner. Yours."

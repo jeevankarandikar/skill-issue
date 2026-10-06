@@ -35,7 +35,7 @@ It works beside a company or brand design skill and defers to it on brand.
 
 ## writing-guard
 
-A Claude Code hook that refuses machine-sounding prose. It blocks em dashes, middle-dot separators, a list of filler phrases and stock words, and clauses set against each other for effect, in prose files as they are written and in chat replies before they are sent. The model gets the offending snippet back and rewrites. The full rules are in [RULES.md](writing-guard/RULES.md), and the hook is one Python file with no dependencies. Details are in [its README](writing-guard/README.md).
+A Claude Code hook that refuses machine-sounding prose. It blocks em dashes, middle-dot separators, a list of filler phrases and stock words, and clauses set against each other for effect, in prose files as they are written and in chat replies before they are sent. The model gets the offending snippet back and rewrites. It also reads the full rules in [RULES.md](writing-guard/RULES.md) to the model at the start of each session. Install is one command, and the hook is one Python file with no dependencies. Details are in [its README](writing-guard/README.md).
 
 ## fleet-gauge
 

@@ -49,42 +49,20 @@ A brand design skill stays where it is. `design-jeev` loads it alongside itself 
 
 ## The writing guard
 
-Claude Code only. Paste the rules from [writing-guard/RULES.md](writing-guard/RULES.md) into `~/.claude/CLAUDE.md`, then add the hook to the `hooks` block of `~/.claude/settings.json`:
-
-```json
-"hooks": {
-  "PreToolUse": [
-    {
-      "matcher": "Write|Edit|NotebookEdit",
-      "hooks": [
-        {
-          "type": "command",
-          "command": "python3 \"$HOME/Developer/GitHub/skill-issue/writing-guard/writing_guard.py\"",
-          "timeout": 10
-        }
-      ]
-    }
-  ],
-  "Stop": [
-    {
-      "hooks": [
-        {
-          "type": "command",
-          "command": "python3 \"$HOME/Developer/GitHub/skill-issue/writing-guard/writing_guard.py\"",
-          "timeout": 10
-        }
-      ]
-    }
-  ]
-}
-```
-
-If the file already has a `hooks` block, add these entries to its `PreToolUse` and `Stop` lists and keep what is there. If an older writing hook is already wired there, remove its entry, since both would block the same text with different messages.
-
-Start a new session, then check the guard:
+Claude Code only. Run the installer once:
 
 ```bash
-python3 ~/Developer/GitHub/skill-issue/writing-guard/writing_guard.py --selftest
+python3 ~/Developer/GitHub/skill-issue/writing-guard/install.py
+```
+
+It adds the guard to the `hooks` block of `~/.claude/settings.json`, keeps every other entry, and saves a copy of the file beside it the first time. Start a new session. The guard gives the model the rules at the start of each session, so there is nothing to paste.
+
+If an older writing hook is already wired in that file, remove its entry, since both would block the same text with different messages.
+
+To take the guard out:
+
+```bash
+python3 ~/Developer/GitHub/skill-issue/writing-guard/install.py --remove
 ```
 
 ## The fleet-gauge mod

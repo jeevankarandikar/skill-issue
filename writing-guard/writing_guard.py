@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Writing guard for Claude Code: blocks the checkable half of RULES.md.
 
-One script, two hook events. On PreToolUse for Write, Edit and NotebookEdit it
-reads the text about to land in a prose file. On Stop it reads the reply about to
-be sent. Exit 2 blocks and hands the offending snippet back to the model; exit 0
-allows. A malformed event allows, so a broken hook never stops work.
+One script, three hook events. On SessionStart it prints the rules in RULES.md,
+which Claude Code adds to the session's context, so nobody has to paste them
+anywhere. On PreToolUse for Write, Edit and NotebookEdit it reads the text about
+to land in a prose file. On Stop it reads the reply about to be sent. Exit 2
+blocks and hands the offending snippet back to the model; exit 0 allows. A
+malformed event allows, so a broken hook never stops work.
 
 Paths that must quote what the rules ban are skipped: this folder, and any path
 containing a fragment listed in WRITING_GUARD_EXEMPT (colon-separated).
@@ -147,8 +149,23 @@ def reply_hit(text: str):
     return hit(text, checks=CHECKS + ((CHAT_ONLY, "banned word"),))
 
 
+def rules() -> str:
+    """the rules list from RULES.md, up to the notes about this guard."""
+    try:
+        with open(os.path.join(HERE, "RULES.md"), encoding="utf-8") as f:
+            text = f.read()
+    except OSError:
+        return ""
+    bullets = [line for line in text.split("\n## ")[0].splitlines() if line.startswith("- ")]
+    if not bullets:
+        return ""
+    return ("Writing rules for every surface in this session: chat, pages, UI copy, "
+            "commit messages and docs. A hook blocks the checkable ones.\n\n" + "\n".join(bullets))
+
+
 def _selftest() -> None:
     import tempfile
+    assert rules().count("\n- ") >= 10 and "## " not in rules()
     block = [
         "Size is the goal. Strength is the byproduct.",
         "Not a plateau, a reset.",
@@ -217,6 +234,9 @@ def main() -> None:
     except Exception:
         sys.exit(0)  # malformed event, fail open rather than block everything
     if not isinstance(event, dict):
+        sys.exit(0)
+    if event.get("hook_event_name") == "SessionStart":
+        print(rules())
         sys.exit(0)
     tool_input = event.get("tool_input")
     if isinstance(tool_input, dict):
