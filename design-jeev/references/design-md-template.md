@@ -12,7 +12,7 @@ What it is, who uses it, on which devices, and the feeling it should leave.
 The UI framework, the styling system, the component source, the icon set, and where each lives in the repository.
 
 ## Canon
-The guidelines this project follows (Apple's Human Interface Guidelines, Material, or its own system), and the places where it departs from them on purpose.
+The guidelines this project follows (Apple's Human Interface Guidelines, Material, or its own system), and the places where it departs from them on purpose. Name any company or brand design skill that applies, so an agent loads it.
 
 ## Tokens
 Where the tokens are defined, and the scales themselves.

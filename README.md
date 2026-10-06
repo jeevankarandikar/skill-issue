@@ -1,6 +1,6 @@
 # skill-issue
 
-The public half of my agent harness: one design skill and one Claude Code mod. I used to keep 25 skills here. Most of them repeated what the models already do, so they are gone.
+The public half of my agent harness: one design skill, one writing guard and one Claude Code mod. I used to keep 25 skills here. Most of them repeated what the models already do, so they are gone.
 
 ## design-jeev
 
@@ -16,7 +16,26 @@ It runs interface work in stages, and each stage hands a written result to the n
 
 When a project has no interface yet, the skill picks an approach by use case before writing anything. The table it uses is in [choosing.md](design-jeev/references/choosing.md).
 
+The judgment behind the stages lives in reference files the skill loads only when the work touches them:
+
+| Reference | What it holds |
+| --- | --- |
+| [principles.md](design-jeev/references/principles.md) | How Apple, Google, Meta, OpenAI, Anthropic, Superhuman, Linear, Stripe, Vercel and Airbnb say they design, where they disagree, and how to choose |
+| [lenses.md](design-jeev/references/lenses.md) | Ten designers to reason from, sixteen UX laws, the disclosure ladder |
+| [craft.md](design-jeev/references/craft.md) | Type, color, spacing, hierarchy and depth |
+| [interaction.md](design-jeev/references/interaction.md) | Control states, forms, waiting, overlays, keyboard, motion timing, first run |
+| [words.md](design-jeev/references/words.md) | Interface text |
+| [data-viz.md](design-jeev/references/data-viz.md) | Chart choice and palettes that survive color blindness |
+| [verticals.md](design-jeev/references/verticals.md) | What money, developer, business, health, shop, AI and consumer products each demand |
+| [critique.md](design-jeev/references/critique.md) | Heuristic scoring and the signs of a generic look |
+
+It works beside a company or brand design skill and defers to it on brand.
+
 `DESIGN.md` records the guidelines the project follows (Apple's, Material, or its own), its tokens, its licensed and banned assets, its surfaces and its decisions. The skill drafts one from your code the first time, using [this template](design-jeev/references/design-md-template.md).
+
+## writing-guard
+
+A Claude Code hook that refuses machine-sounding prose. It blocks em dashes, middle-dot separators, a list of filler phrases and stock words, and clauses set against each other for effect, in prose files as they are written and in chat replies before they are sent. The model gets the offending snippet back and rewrites. The full rules are in [RULES.md](writing-guard/RULES.md), and the hook is one Python file with no dependencies. Details are in [its README](writing-guard/README.md).
 
 ## fleet-gauge
 

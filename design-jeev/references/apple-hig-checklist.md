@@ -24,7 +24,7 @@ How to run it: open the surface at a narrow window and a wide one, in light and 
 - [ ] Spacing uses a consistent scale, and hover and focus effects are never cropped by neighbors. (Collections, Layout)
 
 ## Type scale
-- [ ] Interface text asks the system first (`-apple-system, system-ui`), with a self-hosted open face after it only where the system is not enough. (Typography, owner decision 2026-09-15)
+- [ ] Interface text asks the system first (`-apple-system, system-ui`), with a licensed face after it only where the system is not enough. (Typography)
 - [ ] Mac UI body text is 13px with nothing below 10px; other sizes come from the platform style table. (Typography)
 - [ ] Weights stay between 400 and 700 with no ultralight, thin or light text. (Typography)
 - [ ] Sizes are in rem, and the page stays usable at 200 percent zoom, wrapping rather than truncating in scrolling content. (Accessibility, Typography)
@@ -40,7 +40,7 @@ How to run it: open the surface at a narrow window and a wide one, in light and 
 - [ ] First paint follows `prefers-color-scheme` with no white flash, and `color-scheme: light dark` is set. (Dark Mode, Launching)
 - [ ] The dark palette uses dimmer grounds and brighter text rather than an inversion, and white-background images are dimmed. (Dark Mode)
 - [ ] Icons use `currentColor` or have per-mode variants, and still read in both modes. (Dark Mode, Icons)
-- [ ] The product follows the system appearance with no toggle and no stored override. A published artifact instead opens on its default palette and has a working theme switch. (Dark Mode, owner artifact rule)
+- [ ] The product follows the system appearance. An appearance switch exists only where the project's `DESIGN.md` records that decision. (Dark Mode)
 
 ## Focus and keyboard
 - [ ] Every control can be reached with Tab in reading order, with no positive tabindex. (Keyboards, Focus and selection)
@@ -67,9 +67,9 @@ How to run it: open the surface at a narrow window and a wide one, in light and 
 - [ ] Secrets go in the keychain and password-type fields, never prefilled or echoed. (Privacy, Entering data)
 
 ## Assets and licenses
-- [ ] No file from Apple's Design Resources downloads appears anywhere: no SF Pro, New York or SF Mono file, no SF Symbols export or symbol font, no UI kit asset or exported token, no bezel, no badge. (owner decision 2026-09-15)
-- [ ] Web icons are Lucide inline SVG, with Phosphor regular for a missing glyph, stroked with `currentColor` at a weight matched to the adjacent text. SF Symbols appear only in native Swift code. (Icons, SF Symbols)
-- [ ] Every bundled font and icon set has its license file beside it and a line in the third-party notices file. (owner decision 2026-09-15)
+- [ ] Files from Apple's Design Resources downloads (SF Pro, New York and SF Mono files, SF Symbols exports, UI kit assets and tokens, bezels, badges) appear only if the project's `DESIGN.md` records that it accepted that license. (Apple Design Resources license)
+- [ ] Web icons come from the icon set `DESIGN.md` names, as inline SVG stroked with `currentColor` at a weight matched to the adjacent text. SF Symbols appear only in native Swift code. (Icons, SF Symbols)
+- [ ] Every bundled font and icon set has its license file beside it and a line in the third-party notices file.
 - [ ] Screenshots use fictional data only and sit in the project's own frame, with no traffic-light dots and no Apple device shape. (App Store marketing guidelines)
 - [ ] Mac and other Apple product names are written as Apple writes them, and no Apple logo appears. (App Store marketing guidelines)
 
