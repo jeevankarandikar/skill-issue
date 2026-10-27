@@ -1,6 +1,6 @@
 # skill-issue
 
-This is the public half of my agent harness. It holds a design skill, a writing guard and a usage gauge. I used to keep 25 skills here. Most of them repeated what the models already do, so they are gone.
+This is the public half of my agent harness. It holds a design skill, a motion skill, a writing guard and a usage gauge. I used to keep 25 skills here. Most of them repeated what the models already do, so they are gone.
 
 ## design-jeev
 
@@ -33,6 +33,10 @@ It works beside a company or brand design skill and defers to it on brand.
 
 `DESIGN.md` records the guidelines the project follows (Apple's, Material, or its own), its tokens, its licensed and banned assets, its surfaces and its decisions. The skill drafts one from your code the first time, using [this template](design-jeev/references/design-md-template.md).
 
+## motion
+
+`motion` teaches an agent to make a short motion video for any repo with [studio](https://github.com/jeevankarandikar/studio), a separate command-line tool that renders HTML scenes. The scenes move on spring physics instead of easing curves, the cuts land on the beat, and the sound is synthesized. The skill covers the stages (`init`, scene writing, an approval gate, review, export), the rules a scene must follow, and what to report afterward, including what was not measured. It needs `studio` installed. [motion/SKILL.md](motion/SKILL.md) lists the install steps. For animation inside an app's interface, use `design-jeev`.
+
 ## writing-guard
 
 `writing-guard` is a hook for Claude Code, Cursor and Codex that refuses machine-sounding prose. It blocks em dashes, middle-dot separators, a list of filler phrases and stock words, and clauses set against each other for effect, in prose files as they are written and in chat replies before they are sent. The model gets the offending snippet back and rewrites. It also reads the full rules in [RULES.md](writing-guard/RULES.md) to the model at the start of each session. Install is one command, and the hook is one Python file with no dependencies. Details are in [its README](writing-guard/README.md).
@@ -43,4 +47,4 @@ It works beside a company or brand design skill and defers to it on brand.
 
 ## Install
 
-Clone the repository and run `python3 install.py`. It sets up the design skill and the writing guard for whichever of Claude Code, Cursor and Codex you have. [SETUP.md](SETUP.md) has the details and the fleet-gauge step. To update later, run `git pull` in the clone and restart the agent.
+Clone the repository and run `python3 install.py`. It sets up the design skill, the motion skill and the writing guard for whichever of Claude Code, Cursor and Codex you have. [SETUP.md](SETUP.md) has the details and the fleet-gauge step. To update later, run `git pull` in the clone and restart the agent.
